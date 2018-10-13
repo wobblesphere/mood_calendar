@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond|Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+
+
+.moodForm{
+  background: #fbead2;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  width: 300px;
+  height: 380px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 36px 0px #f9e2c1;
+}
+
+.mood{
+  font-family: 'Pacifico', cursive;
+  font-family: 'EB Garamond', serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  width: 210px;
+  padding-bottom: 3px;
+}
+
+input {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+.Bad{
+  background-color: #F37186;
+}
+
+.Fantastic{
+  background-color: #A2E392;
+}
+
+.Good{
+  background-color: #F7A1E0;
+}
+
+.OK {
+  background-color: #A1B8F9;
+}
+
+.Meh{
+  background-color: #C7CBD8;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Pacifico', cursive;
+  font-family: 'EB Garamond', serif;
+}
+
+.moodSelection{
+  margin-left: 50px;
+}
+
+.moodFormSubmit {
+  margin-left: 50px;
+  margin-top: 15px;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 20px;
+  width: 100px;
+  border-radius: 3px;
+  padding: 5px;
+  outline: none;
+}
+
+.moodFormSubmit:hover {
+  cursor: pointer;
+  background-color: #769EE3;
+}
