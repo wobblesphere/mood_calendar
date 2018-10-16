@@ -42,7 +42,7 @@ class PopUpForm extends Component {
 
 function mapStateToProps(state){
   return{
-    mood: state.mood
+    mood: state.get("mood")
   }
 }
 

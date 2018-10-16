@@ -1,34 +1,22 @@
+import { Map } from 'immutable';
 
-const INITIAL_STATE = {
+const INITIAL_STATE = Map({
   currentMonth: 'Jan',
   isPopUpShown: false,
   mood: 'none',
-}
+});
 
 function appReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case('CHANGE_MONTH_HEADER'):
-      return {
-        currentMonth: action.data,
-        isPopUpShown: state.isPopUpShown,
-        mood: state.mood,
-      };
+      return state.set("currentMonth", action.data);
       case('SHOW_POP_UP'):
-      return {
-        isPopUpShown: action.data,
-        currentMonth: state.currentMonth,
-        mood: state.mood,
-      }
+      return state.set("isPopUpShown", action.data);
       case('UPDATE_MOOD'):
-      return{
-        mood: action.data,
-        isPopUpShown: state.isPopUpShown,
-        currentMonth: state.currentMonth,
-      }
+      return state.set("mood", action.data);
     default:
       return state
   }
 }
-
 
 export default appReducer;

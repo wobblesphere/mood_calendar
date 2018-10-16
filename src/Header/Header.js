@@ -81,7 +81,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentMonth: state.currentMonth
+    currentMonth: state.get("currentMonth")
   };
 }
 
