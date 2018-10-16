@@ -26,7 +26,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    isPopUpShown: state.isPopUpShown,
+    isPopUpShown: state.get("isPopUpShown"),
   };
 }
 
