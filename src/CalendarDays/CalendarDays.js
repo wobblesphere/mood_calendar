@@ -2,21 +2,16 @@ import React, { Component } from 'react';
 import './CalendarDays.css';
 import Constants from '../constants.js';
 import Utils from '../utils.js';
+import CalendarDay from "../CalendarDay/CalendarDay.js";
 
-class CalendarDaySquare extends Component {
+class CalendarDays extends Component {
   //sunday=0, monday=1, tuesday=2...
-  constructor() {
-    super();
-    this.state = {
-      showMoodForm: false
-    };
-  }
-
-  toggleMoodForm() {
-   this.setState({
-     showMoodForm: !this.state.showPopup
-   });
- }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     mood: "Good"
+  //   }
+  // }
 
   renderCalendarSquares(month) {
     //Create all the squares on the calendar
@@ -54,9 +49,7 @@ class CalendarDaySquare extends Component {
       }
 
       squares.push(
-        <div className={"day "+ startingDayRecord} key={i} onClick={()=>this.toggleMoodForm()}>
-          {i}
-        </div>
+        <CalendarDay day={i} startingDayRecord={startingDayRecord} key={i} />
       )
       startingDay++;
       startingDayRecord++;
@@ -80,4 +73,4 @@ class CalendarDaySquare extends Component {
       return this.renderCalendarSquares(this.props.month);
     }
 }
-export default CalendarDaySquare;
+export default CalendarDays;

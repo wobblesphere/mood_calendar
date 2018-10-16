@@ -12,15 +12,23 @@ function changeMonthBoard(month){
   }
 }
 
-function showMoodForm(month, day){
+function update_Mood(mood){
   return {
-    type: 'SHOW_MOOD_FORM',
-    data: month, day
+    type: "UPDATE_MOOD",
+    data: mood
+  }
+}
+
+function showPopUP(){
+  return {
+    type: 'SHOW_POP_UP',
+    data: true,
   }
 }
 
 export default {
   changeMonthHeader,
   changeMonthBoard,
-  showMoodForm
+  showPopUP,
+  update_Mood
 }

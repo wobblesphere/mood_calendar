@@ -25,6 +25,24 @@ const WEEKDAYS = {
   'Saturday': 6,
 }
 
+const moods = [
+  {'type':'Fantastic',
+    'text': 'Fantastic!',
+  },
+  {'type': 'Good',
+    'text': 'Good',
+  },
+  {'type': 'OK',
+    'text': 'OK',
+  },
+  {'type': 'Meh',
+    'text': 'Meh, could be better',
+  },
+  {'type': 'Bad',
+    'text': 'Bad',
+  },
+  ];
+
 const YEAR_START_WEEKDAY = 'Monday';
 
 const months = ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -32,6 +50,7 @@ const months = ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'O
 export default {
   monthDaysDict,
   months,
+  moods,
   WEEKDAYS,
   YEAR_START_WEEKDAY
 }

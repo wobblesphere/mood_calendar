@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './CalendarBoard.css';
-import CalendarDaySquare from '../CalendarDays/CalendarDays.js';
+import CalendarDays from '../CalendarDays/CalendarDays.js';
 
 class CalendarBoard extends Component{
   renderCalendarMonToSun() {
@@ -18,15 +18,11 @@ class CalendarBoard extends Component{
     )
   }
 
-  renderForm(month){
-    console.log(month);
-  }
-
   render() {
     return (
       <div className="board">
         {this.renderCalendarMonToSun()}
-        <CalendarDaySquare month={this.props.currentMonth} onClickMethod={()=>this.renderForm(this.props.currentMonth)}/>
+        <CalendarDays month={this.props.currentMonth}/>
       </div>
     )
   }
@@ -35,14 +31,9 @@ class CalendarBoard extends Component{
 function mapStateToProps(state) {
   return {
     currentMonth: state.currentMonth
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {};
+  }
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(CalendarBoard)
