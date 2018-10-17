@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./CalendarDay.css";
 import { connect } from 'react-redux'
-
+import Actions from '../actions/actions.js';
 
 class CalendarDay extends Component {
   // constructor() {
@@ -17,16 +17,17 @@ class CalendarDay extends Component {
   //   })
   // }
 
-  displayPopUp(){
-    this.props.displayForm();
+  displayPopUp(squareID){
+    this.props.displayForm(squareID);
   }
 
   render() {
     return(
-      <div className={"day "+ this.props.startingDayRecord+ " " + this.props.mood}
+      <div className={"day "+ this.props.startingDayRecord+ " " + this.props.mood.get(this.props.id)}
+            id={this.props.month + this.props.day}
           onClick={()=>{
             // this.changeSquareColor(this.props.mood);
-            this.displayPopUp()}}>
+            this.displayPopUp(this.props.id)}}>
       {this.props.day}
     </div>
     )
@@ -35,17 +36,14 @@ class CalendarDay extends Component {
 
 function mapStateToProps(state) {
   return {
-    mood: state.get("mood"),
+    mood: state.get("year2018Mood"),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    displayForm: ()=> {
-      dispatch({
-        type: 'SHOW_POP_UP',
-        data: true,
-      })
+    displayForm: (squareID)=> {
+      dispatch(Actions.showPopUP(squareID))
     }
   };
 }

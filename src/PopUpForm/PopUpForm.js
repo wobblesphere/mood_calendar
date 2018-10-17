@@ -2,17 +2,27 @@ import React, { Component } from 'react';
 import "./PopUpForm.css";
 import { connect } from 'react-redux'
 import Constants from '../constants.js'
+import Actions from '../actions/actions.js';
+
 
 class PopUpForm extends Component {
   constructor(){
     super();
     this.state = {
-      isChecked: false,
+      mood: 'none',
     }
   }
 
   handleCheckClick(mood){
-    console.log(mood)
+    // if(this.state.mood === mood) {
+    //   this.setState = ({
+    //     mood: 'none',
+    //   })
+    // } else {
+      this.setState({
+        mood: mood,
+      })
+    // }
   }
 
   createMoodList(){
@@ -32,9 +42,12 @@ class PopUpForm extends Component {
   render(){
     return (
       <div className="moodForm" key="moodForm">
-        <h2 Key="formHeader">Rate your day: </h2>
+        <h2 key="formHeader">Rate your day on <span>{this.props.squareID}</span> : </h2>
         {this.createMoodList()}
-        <button className="moodFormSubmit" key="submitButton" > Submit </button>
+        <button className="moodFormSubmit"
+                key="submitButton"
+                onClick={()=> this.props.update_Mood(this.state.mood,this.props.squareID)}
+               > Submit </button>
       </div>
     )
   }
@@ -42,13 +55,15 @@ class PopUpForm extends Component {
 
 function mapStateToProps(state){
   return{
-    mood: state.get("mood")
+    squareID: state.get("clickedDay"),
   }
 }
 
 function mapDispatchToProps(dispatch){
   return {
-
+    update_Mood: (mood, squareID) => {
+      dispatch(Actions.update_Mood(mood, squareID))
+    }
   }
 }
 

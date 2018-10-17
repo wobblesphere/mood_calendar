@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { connect } from 'react-redux'
-import { library } from '@fortawesome/fontawesome-svg-core'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-
+import { connect } from 'react-redux';
 import Actions from '../actions/actions.js';
-
-library.add(faAngleLeft);
-library.add(faAngleRight);
 
 class Header extends Component {
   constructor() {

@@ -1,5 +1,3 @@
-// import React, { Component } from 'react';
-
 const monthDaysDict = {
   'Jan': 31,
   'Feb': 28,
@@ -43,6 +41,14 @@ const moods = [
   },
   ];
 
+const moodColor = {
+  'Fantastic':  '#ccf1c3',
+  'Good': '#f5c2e7',
+  'OK': '#bccbf5',
+  'Meh':'#d2d4da',
+  'Bad':'#f57676b0'
+}
+
 const YEAR_START_WEEKDAY = 'Monday';
 
 const months = ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -52,5 +58,6 @@ export default {
   months,
   moods,
   WEEKDAYS,
-  YEAR_START_WEEKDAY
+  YEAR_START_WEEKDAY,
+  moodColor
 }
