@@ -29,9 +29,18 @@ function showPopUP(squareID){
   }
 }
 
+
+function toggleYearMenu(toggle){
+  return{
+    type:"TOGGLE_YEAR_MENU",
+    data: toggle,
+  }
+}
+
 export default {
   changeMonthHeader,
   changeMonthBoard,
   showPopUP,
-  update_Mood
+  update_Mood,
+  toggleYearMenu,
 }

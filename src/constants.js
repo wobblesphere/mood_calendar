@@ -13,6 +13,8 @@ const monthDaysDict = {
   'Dec': 31,
 };
 
+const Years = [2019, 2018, 2017];
+
 const WEEKDAYS = {
   'Sunday': 0,
   'Monday': 1,
@@ -59,5 +61,6 @@ export default {
   moods,
   WEEKDAYS,
   YEAR_START_WEEKDAY,
-  moodColor
+  moodColor,
+  Years
 }
