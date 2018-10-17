@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import './CalendarDays.css';
 import Constants from '../constants.js';
 import Utils from '../utils.js';
 import CalendarDay from "../CalendarDay/CalendarDay.js";
 
 class CalendarDays extends Component {
   //sunday=0, monday=1, tuesday=2...
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     mood: "Good"
-  //   }
-  // }
 
   renderCalendarSquares(month) {
     //Create all the squares on the calendar

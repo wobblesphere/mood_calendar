@@ -4,30 +4,15 @@ import { connect } from 'react-redux'
 import Actions from '../actions/actions.js';
 
 class CalendarDay extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     mood: "none",
-  //   }
-  // }
-  //
-  // changeSquareColor(mood){
-  //   this.setState({
-  //     mood: mood,
-  //   })
-  // }
-
   displayPopUp(squareID){
     this.props.displayForm(squareID);
   }
 
   render() {
     return(
-      <div className={"day "+ this.props.startingDayRecord+ " " + this.props.mood.get(this.props.id)}
+      <div className={"day currentMonthDays "+ this.props.startingDayRecord+ " " + this.props.mood.get(this.props.id)}
             id={this.props.month + this.props.day}
-          onClick={()=>{
-            // this.changeSquareColor(this.props.mood);
-            this.displayPopUp(this.props.id)}}>
+          onClick={()=> this.displayPopUp(this.props.id)}>
       {this.props.day}
     </div>
     )

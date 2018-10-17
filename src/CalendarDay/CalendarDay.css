@@ -10,7 +10,14 @@
   padding-left: 3px;
 }
 
-.day:hover {
+.JanRefDays {
+  color: rgb(0,0,0,0);
+}
+.refDays {
+  color: lightGray;
+}
+
+.currentMonthDays:hover {
   cursor: pointer;
 }
 

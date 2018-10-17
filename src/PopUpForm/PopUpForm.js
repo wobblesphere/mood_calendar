@@ -14,15 +14,9 @@ class PopUpForm extends Component {
   }
 
   handleCheckClick(mood){
-    // if(this.state.mood === mood) {
-    //   this.setState = ({
-    //     mood: 'none',
-    //   })
-    // } else {
-      this.setState({
-        mood: mood,
-      })
-    // }
+    this.setState({
+      mood: mood,
+    })
   }
 
   createMoodList(){

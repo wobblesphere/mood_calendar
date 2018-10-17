@@ -21,13 +21,34 @@ class Header extends Component {
     })
   }
 
+  isActive(month){
+    if(this.props.currentMonth === month){
+      return "active"
+    }
+    return null
+  }
+
+  _onMouseMove(e){
+    console.log("mousemove");
+    console.log('x', e.screenX, 'y', e.screenY);
+  }
+
   renderYearMenu() {
     if(this.state.displayYearMenu){
       return (
         <div className="dropDownMenu" key="topBarMenu_item_year">
-          <div key="2019" className="selectValue" value="2019" onClick={()=>this.displayYearMenuFunction()}>2019</div>
-          <div key="2018" className="selectValue" value="2018" onClick={()=>this.displayYearMenuFunction()}>2018</div>
-          <div key="2017" className="selectValue" value="2017" onClick={()=>this.displayYearMenuFunction()}>2017</div>
+          <div key="2019"
+              className="selectValue"
+              value="2019"
+              onClick={()=>this.displayYearMenuFunction()}>2019</div>
+          <div key="2018"
+                className="selectValue"
+                value="2018"
+                onClick={()=>this.displayYearMenuFunction()}>2018</div>
+          <div key="2017"
+                className="selectValue"
+                value="2017"
+                onClick={()=>this.displayYearMenuFunction()}>2017</div>
         </div>
       )
     }
@@ -38,7 +59,11 @@ class Header extends Component {
     const menu = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const yearMenu = (
                   <div key="yearSelect" className="yearSelect">
-                    <button key="dropbtn" className="dropbtn" onClick={()=>this.displayYearMenuFunction()}>Select Year</button>
+                    <button key="dropbtn"
+                            className="dropbtn"
+                            onClick={()=>this.displayYearMenuFunction()}
+                            onMouseMove={this._onMouseMove(this)}>Select Year
+                    </button>
                       {this.renderYearMenu()}
                   </div>
     );
@@ -47,7 +72,7 @@ class Header extends Component {
     for(let month of menu) {
       topBarMenu.push(
         <div
-          className={month + " topBarMenu_item"}
+          className={month + " topBarMenu_item " + this.isActive(month)}
           key={month}
           onClick={()=>this.changeHeader__Month(month)}>
           {month}

@@ -4,22 +4,25 @@
 
 .month_menu {
   height: 40px;
-  margin-left: 5px;
   font-family:  'Sarala', sans-serif;
+  border-bottom: 3px solid transparent;
 }
 
-
-.topBarMenu_item{
+.topBarMenu_item {
+  padding-top: 4px;
+  padding-bottom: 5px;
   font-size: 13px;
   display: inline-block;
-  width: 6.1rem;
+  width: 6.25rem;
   text-align: center;
 }
 
+.active {
+  background-color: #92C0FB;
+}
 
 .topBarMenu_item:hover{
   background-color: #92C0FB;
-  font-size: 18px;
   cursor: pointer;
 }
 
@@ -47,6 +50,7 @@
 .dropbtn{
   width: 80px;
   height: 30px;
+  font-weight: bold;
   border-bottom-left-radius: 3px;
   background-color: #D2EFEA;
   border: none;
