@@ -18,7 +18,7 @@
 }
 
 .active {
-  background-color: #92C0FB;
+  border-bottom: 3px solid #67c7b7;
 }
 
 .topBarMenu_item:hover{
@@ -32,42 +32,4 @@
   font-size: 60px;
   font-family: 'Cormorant Garamond', serif;
   color: #64ADD1;
-}
-
-.year:hover, .selectValue:hover, .dropbtn:hover {
-  cursor: pointer;
-}
-
-.yearSelect {
-  position: relative;
-  float: right;
-}
-
-.selectValue:hover{
-  background-color: #B7DBF0;
-}
-
-.dropbtn{
-  width: 80px;
-  height: 30px;
-  font-weight: bold;
-  border-bottom-left-radius: 3px;
-  background-color: #D2EFEA;
-  border: none;
-  outline: none;
-  margin-top: 0;
-}
-
-.dropbtn:hover {
-  box-shadow: 0px 1px 15px -5px #ADCADB;
-}
-
-.dropDownMenu {
-  position: absolute;
-  display: block;
-  background: #D2EFEA;
-  width: 80px;
-  overflow: scroll;
-  top: 30px;
-  text-align: center;
 }

@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import './Header.css';
+import YearSelectionMenu from "../YearSelectionMenu/YearSelectionMenu.js";
 import { connect } from 'react-redux';
 import Actions from '../actions/actions.js';
+import Constants from '../constants.js';
 
 class Header extends Component {
-  constructor() {
-    super();
-    this.state = {
-      displayYearMenu: false,
-    }
-  }
-
   changeHeader__Month(month){
     this.props.changeMonth(month);
-  }
-
-  displayYearMenuFunction(){
-    this.setState({
-      displayYearMenu: !this.state.displayYearMenu,
-    })
   }
 
   isActive(month){
@@ -28,48 +17,12 @@ class Header extends Component {
     return null
   }
 
-  _onMouseMove(e){
-    console.log("mousemove");
-    console.log('x', e.screenX, 'y', e.screenY);
-  }
-
-  renderYearMenu() {
-    if(this.state.displayYearMenu){
-      return (
-        <div className="dropDownMenu" key="topBarMenu_item_year">
-          <div key="2019"
-              className="selectValue"
-              value="2019"
-              onClick={()=>this.displayYearMenuFunction()}>2019</div>
-          <div key="2018"
-                className="selectValue"
-                value="2018"
-                onClick={()=>this.displayYearMenuFunction()}>2018</div>
-          <div key="2017"
-                className="selectValue"
-                value="2017"
-                onClick={()=>this.displayYearMenuFunction()}>2017</div>
-        </div>
-      )
-    }
-  }
-
   renderTopBarMenu() {
     let topBarMenu = [];
-    const menu = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const yearMenu = (
-                  <div key="yearSelect" className="yearSelect">
-                    <button key="dropbtn"
-                            className="dropbtn"
-                            onClick={()=>this.displayYearMenuFunction()}
-                            onMouseMove={this._onMouseMove(this)}>Select Year
-                    </button>
-                      {this.renderYearMenu()}
-                  </div>
-    );
+    const yearMenu = <YearSelectionMenu key="yearSelectionMenu"/>;
     topBarMenu.push(yearMenu);
 
-    for(let month of menu) {
+    for(let month of Constants.months) {
       topBarMenu.push(
         <div
           className={month + " topBarMenu_item " + this.isActive(month)}
