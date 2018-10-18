@@ -6,26 +6,24 @@ import Actions from '../actions/actions.js';
 
 
 class PopUpForm extends Component {
-  constructor(){
-    super();
-    this.state = {
-      mood: 'none',
-    }
-  }
-
-  handleCheckClick(mood){
-    this.setState({
-      mood: mood,
-    })
-  }
-
   createMoodList(){
     const moodList = Constants.moods.map((item)=>
-        <div className={item.type + " mood"} key={item.type+"mood"}>
-          <input type="checkbox" onChange={()=>this.handleCheckClick(item.type)} />
-          {item.text}
+        <div className={item.type + " mood"}
+              key={item.type+"mood"}
+              onClick={()=>this.props.update_Mood(item.type,this.props.squareID)}>
+            {item.text}
         </div>
     )
+
+    //clear mood Button
+    moodList.push(
+      <div className={"clear mood"}
+            key="clear"
+            onClick={()=>this.props.update_Mood(null,this.props.squareID)}>
+            clear mood
+      </div>
+    )
+
     return (
       <div className="moodSelection" key="moodSelections">
         {moodList}
@@ -33,15 +31,20 @@ class PopUpForm extends Component {
     )
   }
 
+  renderDeleteButton(){
+    return(
+      <div className="deleteButton" onClick={()=>this.props.hidePopUp()}>
+        x
+      </div>
+    )
+  }
+
   render(){
     return (
       <div className="moodForm" key="moodForm">
+        {this.renderDeleteButton()}
         <h2 key="formHeader">Rate your day on <span>{this.props.squareID}</span> : </h2>
         {this.createMoodList()}
-        <button className="moodFormSubmit"
-                key="submitButton"
-                onClick={()=> this.props.update_Mood(this.state.mood,this.props.squareID)}
-               > Submit </button>
       </div>
     )
   }
@@ -53,11 +56,12 @@ function mapStateToProps(state){
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return {
     update_Mood: (mood, squareID) => {
       dispatch(Actions.update_Mood(mood, squareID))
-    }
+    },
+    hidePopUp: () => {dispatch(Actions.hidePopUp())},
   }
 }
 

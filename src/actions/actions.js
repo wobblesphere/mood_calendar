@@ -29,6 +29,11 @@ function showPopUP(squareID){
   }
 }
 
+function hidePopUp(){
+  return {
+    type: "HIDE_POP_UP",
+  }
+}
 
 function toggleYearMenu(toggle){
   return{
@@ -43,4 +48,5 @@ export default {
   showPopUP,
   update_Mood,
   toggleYearMenu,
+  hidePopUp
 }

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
 .moodForm{
   background: #fbead2;
@@ -15,6 +16,24 @@ span{
   color: #FFA500;
 }
 
+.deleteButton{
+  float:right;
+  padding-top:0;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #E63535;
+  color:white;
+  font-size: 13px;
+  font-family: 'PT Sans', sans-serif;
+  border-radius: 60%;
+  font-weight: bold;
+}
+.deleteButton:hover{
+  cursor: pointer;
+  box-shadow: 0px 2px 10px 0px #CD1E1E;
+}
+
 .mood{
   font-family: 'Amatic SC', cursive;
   font-weight: bold;
@@ -23,6 +42,7 @@ span{
   border-radius: 10px;
   width: 210px;
   padding-bottom: 3px;
+  text-align: center;
 }
 
 input {
@@ -33,6 +53,13 @@ input:hover {
   cursor: pointer;
 }
 
+.clear{
+  background-color: white;
+  border: 1px dashed red;
+}
+.clear:hover{
+  box-shadow: -1px 1px 19px -2px red;
+}
 
 .Bad{
   background-color: #f57676b0;

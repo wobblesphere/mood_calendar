@@ -18,6 +18,8 @@ function appReducer(state = INITIAL_STATE, action) {
         {"isPopUpShown": action.data,
         "clickedDay": action.squareID}
       );
+    case('HIDE_POP_UP'):
+      return state.set("isPopUpShown", false);
     case('TOGGLE_YEAR_MENU'):
       return state.set("displayYearMenu", action.data);
     case('HIDE_YEAR_MENU'):
