@@ -7,6 +7,7 @@ const INITIAL_STATE = Map({
   mood: 'none',
   clickedDay: "none",
   year2018Mood: Map({}),
+  showPageMask: false,
 });
 
 function appReducer(state = INITIAL_STATE, action) {

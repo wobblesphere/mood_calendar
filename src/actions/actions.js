@@ -42,11 +42,19 @@ function toggleYearMenu(toggle){
   }
 }
 
+function togglePageMask(toggle){
+  return{
+    type:"TOGGLE_PAGE_MASK",
+    data: toggle,
+  }
+}
+
 export default {
   changeMonthHeader,
   changeMonthBoard,
   showPopUP,
   update_Mood,
   toggleYearMenu,
-  hidePopUp
+  hidePopUp,
+  togglePageMask
 }

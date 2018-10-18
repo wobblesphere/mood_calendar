@@ -9,7 +9,12 @@ import { connect } from 'react-redux'
 class App extends Component {
   renderForm(){
     if(this.props.isPopUpShown){
-      return <PopUpForm />
+      return (
+        <div>
+          <PopUpForm />
+          <div id="page-mask"></div>
+        </div>
+      )
     }
   }
 

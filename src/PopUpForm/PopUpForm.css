@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
+
 .moodForm{
+  z-index: 10;
   background: #fbead2;
   position: absolute;
-  top: 30%;
-  left: 35%;
+  top: 20%;
+  left: 33%;
   width: 300px;
-  height: 380px;
+  height: 390px;
   border-radius: 5px;
   box-shadow: 0px 2px 36px 0px #f9e2c1;
 }
@@ -19,7 +21,6 @@ span{
 .deleteButton{
   float:right;
   padding-top:0;
-  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
   background-color: #E63535;
