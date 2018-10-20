@@ -10,16 +10,23 @@ class PopUpForm extends Component {
     super();
     this.state = {
       characters: 0,
-      selectedMood: 'none',
+      selectedMood: null,
     }
   }
 
-  isSelected(mood){
-  console.log(this.props.squareID, this.props.squareMood);
-   if((this.state.selectedMood === mood) || (this.props.squareMood === mood)){
-      return true
+  isChosenMood(mood) {
+    return this.props.squareMood === mood;
+  }
+
+  isSelected(mood) {
+    return this.state.selectedMood === mood;
+  }
+
+  isHighlighted(mood) {
+    if (this.state.selectedMood) {
+      return this.isSelected(mood);
     }
-    return false
+    return this.isChosenMood(mood);
   }
 
   moodClicked(mood){
@@ -30,7 +37,7 @@ class PopUpForm extends Component {
 
   createMoodList(){
     const moodList = Constants.moods.map((item)=>
-        <div className={item.type + "Mood formMoods " + (this.isSelected(item.type)? item.type+"MoodSelected" : null)}
+        <div className={item.type + "Mood formMoods " + (this.isHighlighted(item.type)? item.type+"MoodSelected" : null)}
               key={item.type+"mood"}
               onClick={()=>this.moodClicked(item.type)}
               >
