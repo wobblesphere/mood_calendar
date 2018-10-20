@@ -7,9 +7,8 @@ class CalendarDay extends Component {
 
   render() {
     return(
-      <div className={"day currentMonthDays "+ this.props.startingDayRecord+ " " + this.props.mood.get(this.props.id)}
-            id={this.props.month + this.props.day}
-          onClick={()=> this.props.displayForm(this.props.id)}>
+      <div className={`day currentMonthDays  ${this.props.startingDayRecord} ${this.props.mood.get(this.props.date)}`}
+          onClick={()=> this.props.displayForm(this.props.date)}>
       {this.props.day}
     </div>
     )
@@ -18,7 +17,7 @@ class CalendarDay extends Component {
 
 function mapStateToProps(state) {
   return {
-    mood: state.get("year2018Mood"),
+    mood: state.get("year2018Moods"),
   }
 }
 

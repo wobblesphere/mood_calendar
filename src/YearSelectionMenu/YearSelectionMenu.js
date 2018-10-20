@@ -5,12 +5,12 @@ import OutsideAlerter from "./OutsideAlerter.js";
 import { connect } from 'react-redux';
 import Actions from '../actions/actions.js';
 
-class YearSelectionMenu extends Component{
+class YearSelectionMenu extends Component {
   renderYearMenu() {
-    if(this.props.displayYearMenu){
+    if (this.props.displayYearMenu){
       let yearMenu = [];
 
-      for(let year of Constants.Years){
+      for (let year of Constants.Years){
         yearMenu.push(
           <div key={year} className="year" onClick={()=>this.props.toggleYearMenu(!this.props.displayYearMenu)}>
             {year}
@@ -24,6 +24,7 @@ class YearSelectionMenu extends Component{
         </div>
       );
     }
+    return null;
   }
 
   render(){

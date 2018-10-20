@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './CalendarBoard.css';
-import CalendarDays from '../CalendarDays/CalendarDays.js';
+import CalendarMonth from '../CalendarMonth/CalendarMonth.js';
 
 class CalendarBoard extends Component{
   renderCalendarMonToSun() {
@@ -22,7 +22,7 @@ class CalendarBoard extends Component{
     return (
       <div className="board">
         {this.renderCalendarMonToSun()}
-        <CalendarDays month={this.props.currentMonth}/>
+        <CalendarMonth month={this.props.currentMonth} />
       </div>
     )
   }

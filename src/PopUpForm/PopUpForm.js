@@ -6,22 +6,36 @@ import Actions from '../actions/actions.js';
 
 
 class PopUpForm extends Component {
+  constructor(){
+    super();
+    this.state = {
+      characters: 0,
+      selectedMood: 'none',
+    }
+  }
+
+  isSelected(mood){
+  console.log(this.props.squareID, this.props.squareMood);
+   if((this.state.selectedMood === mood) || (this.props.squareMood === mood)){
+      return true
+    }
+    return false
+  }
+
+  moodClicked(mood){
+    this.setState({
+      selectedMood: mood,
+    })
+  }
+
   createMoodList(){
     const moodList = Constants.moods.map((item)=>
-        <div className={item.type + " mood"}
+        <div className={item.type + "Mood formMoods " + (this.isSelected(item.type)? item.type+"MoodSelected" : null)}
               key={item.type+"mood"}
-              onClick={()=>this.props.update_Mood(item.type,this.props.squareID)}>
+              onClick={()=>this.moodClicked(item.type)}
+              >
             {item.text}
         </div>
-    )
-
-    //clear mood Button
-    moodList.push(
-      <div className={"clear mood"}
-            key="clear"
-            onClick={()=>this.props.update_Mood(null,this.props.squareID)}>
-            clear mood
-      </div>
     )
 
     return (
@@ -39,20 +53,68 @@ class PopUpForm extends Component {
     )
   }
 
+  // renderClearButton(){
+  //   return(
+  //     <div className="clear formMoods"
+  //       key="clear"
+  //       onClick={()=>this.props.update_Mood(null,this.props.squareID)}>
+  //       clear mood
+  //     </div>
+  //   )
+  // }
+
+  renderClearAndSubmitButtons(){
+    return(
+      <div>
+        <div className="clear"
+          key="clear"
+          onClick={()=>this.props.update_Mood(null,this.props.squareID)}>
+          clear mood
+        </div>
+        <button className="moodFormSubmit" 
+                onClick={()=>this.props.update_Mood(this.state.selectedMood,this.props.squareID)}>
+                Submit
+        </button>
+      </div>
+    )
+  }
+
+  countCharacters(){
+      this.setState({
+        characters: this.state.characters+1,
+      })
+  }
+
+  renderMoodNote(){
+    return(
+      <div className="moodNoteDiv">
+        <textarea className="moodNote" 
+                   maxLength="300" 
+                  onChange={()=>this.countCharacters()}>
+        </textarea>
+        <div className="maxCharacterNote">max characters: {300 - this.state.characters} </div>
+      </div>
+    )
+  }
+
   render(){
     return (
       <div className="moodForm" key="moodForm">
-        {this.renderDeleteButton()}
-        <h2 key="formHeader">Rate your day on <span>{this.props.squareID}</span> : </h2>
+        <h2 key="formHeader">Rate your day on <div className="formDate">{this.props.squareID}</div> : </h2>
         {this.createMoodList()}
+        {this.renderMoodNote()}
+        {this.renderDeleteButton()}
+        {this.renderClearAndSubmitButtons()}
       </div>
     )
   }
 }
 
 function mapStateToProps(state){
+  const squareID = state.get("clickedDay");
   return{
-    squareID: state.get("clickedDay"),
+    squareID,
+    squareMood: state.get("year2018Moods").get(squareID),
   }
 }
 

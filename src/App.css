@@ -1,5 +1,5 @@
 
-#page-mask {
+.page-mask {
   z-index: 9;
   background: rgba(0, 0, 0, 0.5);
   position: fixed;

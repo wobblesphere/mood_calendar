@@ -15,6 +15,14 @@ const monthDaysDict = {
 
 const Years = [2019, 2018, 2017];
 
+const yearStartingDayDict = {
+  '2018': 1,
+  '2019': 2,
+  '2020': 3,
+  '2021': 5,
+  '2022': 6,
+  '2023': 0,
+}
 const WEEKDAYS = {
   'Sunday': 0,
   'Monday': 1,
@@ -26,19 +34,19 @@ const WEEKDAYS = {
 }
 
 const moods = [
-  {'type':'Fantastic',
+  {'type':'fantastic',
     'text': 'Fantastic!',
   },
-  {'type': 'Good',
+  {'type': 'good',
     'text': 'Good',
   },
-  {'type': 'OK',
+  {'type': 'ok',
     'text': 'OK',
   },
-  {'type': 'Meh',
-    'text': 'Meh, could be better',
+  {'type': 'meh',
+    'text': 'Meh',
   },
-  {'type': 'Bad',
+  {'type': 'bad',
     'text': 'Bad',
   },
   ];
@@ -62,5 +70,6 @@ export default {
   WEEKDAYS,
   YEAR_START_WEEKDAY,
   moodColor,
-  Years
+  Years,
+  yearStartingDayDict
 }

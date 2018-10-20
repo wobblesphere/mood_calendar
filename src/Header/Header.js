@@ -12,20 +12,20 @@ class Header extends Component {
 
   isActive(month){
     if(this.props.currentMonth === month){
-      return "active"
+      return true
     }
-    return null
+    return false
   }
 
   renderTopBarMenu() {
     let topBarMenu = [];
-    const yearMenu = <YearSelectionMenu key="yearSelectionMenu"/>;
-    topBarMenu.push(yearMenu);
+    const yearMenuComponent = <YearSelectionMenu key="yearSelectionMenu"/>;
+    topBarMenu.push(yearMenuComponent);
 
     for(let month of Constants.months) {
       topBarMenu.push(
         <div
-          className={month + " topBarMenu_item " + this.isActive(month)}
+          className={month + " topBarMenu_item " + (this.isActive(month)? 'active' : null)}
           key={month}
           onClick={()=>this.changeHeader__Month(month)}>
           {month}
