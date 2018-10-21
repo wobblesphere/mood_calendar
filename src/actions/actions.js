@@ -15,23 +15,21 @@ function changeMonthBoard(month){
 function update_Mood(mood, squareID){
   return {
     type: "UPDATE_MOOD",
-    data: mood,
-    squareID: squareID,
-    isPopUpShown: false,
+    data: { mood, squareID, isPopUpShown: false }
   }
 }
 
 function showPopUP(squareID){
   return {
-    type: 'SHOW_POP_UP',
-    data: true,
-    squareID: squareID,
+    type: 'TOGGLE_POP_UP',
+    data: { isPopUpShown: true, squareID }
   }
 }
 
 function hidePopUp(){
   return {
-    type: "HIDE_POP_UP",
+    type: "TOGGLE_POP_UP",
+    data: { isPopUpShown: false},
   }
 }
 

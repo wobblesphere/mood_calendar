@@ -14,19 +14,17 @@ function appReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case('CHANGE_MONTH_HEADER'):
       return state.set("currentMonth", action.data);
-    case('SHOW_POP_UP'):
+    case('TOGGLE_POP_UP'):
       return state.merge(
-        {"isPopUpShown": action.data,
-        "clickedDay": action.squareID}
+        {"isPopUpShown": action.data.isPopUpShown,
+        "clickedDay": action.data.squareID}
       );
-    case('HIDE_POP_UP'):
-      return state.set("isPopUpShown", false);
     case('TOGGLE_YEAR_MENU'):
       return state.set("displayYearMenu", action.data);
     case('HIDE_YEAR_MENU'):
       return state.set("displayYearMenu", action.data);
     case('UPDATE_MOOD'):
-      return state.updateIn(['year2018Moods', action.squareID], val => action.data).set("isPopUpShown", action.isPopUpShown);
+      return state.updateIn(['year2018Moods', action.data.squareID], val => action.data.mood).set("isPopUpShown", action.data.isPopUpShown);
     default:
       return state
   }
