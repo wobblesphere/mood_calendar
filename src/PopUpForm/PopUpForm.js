@@ -9,7 +9,7 @@ class PopUpForm extends Component {
   constructor(){
     super();
     this.state = {
-      characters: 0,
+      note: "",
       selectedMood: null,
     }
   }
@@ -75,21 +75,28 @@ class PopUpForm extends Component {
       <div>
         <div className="clear"
           key="clear"
-          onClick={()=>this.props.update_Mood(null,this.props.squareID)}>
+          onClick={()=>this.props.update_Mood({
+            mood: null,
+            squareID: this.props.squareID
+          })}>
           clear mood
         </div>
         <button className="moodFormSubmit" 
-                onClick={()=>this.props.update_Mood(this.state.selectedMood,this.props.squareID)}>
+                onClick={()=>this.props.update_Mood({
+                  mood: this.state.selectedMood,
+                  squareID: this.props.squareID,
+                  note: this.state.text
+                })}>
                 Submit
         </button>
       </div>
     )
   }
 
-  countCharacters(){
-      this.setState({
-        characters: this.state.characters+1,
-      })
+  onNoteChange(e) {
+    this.setState({
+      text: e.target.value,
+    });
   }
 
   renderMoodNote(){
@@ -97,9 +104,9 @@ class PopUpForm extends Component {
       <div className="moodNoteDiv">
         <textarea className="moodNote" 
                    maxLength="300" 
-                  onChange={()=>this.countCharacters()}>
+                  onChange={(e)=>this.onNoteChange(e)}>
         </textarea>
-        <div className="maxCharacterNote">max characters: {300 - this.state.characters} </div>
+        <div className="maxCharacterNote">max characters: {300 - this.state.text.length} </div>
       </div>
     )
   }
@@ -127,8 +134,8 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = dispatch => {
   return {
-    update_Mood: (mood, squareID) => {
-      dispatch(Actions.update_Mood(mood, squareID))
+    update_Mood: ({mood, squareID, note}) => {
+      dispatch(Actions.update_Mood({mood, squareID, note}))
     },
     hidePopUp: () => {dispatch(Actions.hidePopUp())},
   }

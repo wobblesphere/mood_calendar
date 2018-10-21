@@ -12,7 +12,7 @@ function changeMonthBoard(month){
   }
 }
 
-function update_Mood(mood, squareID, note){
+function update_Mood({mood, squareID, note}){
   return {
     type: "UPDATE_MOOD",
     data: { mood, squareID, isPopUpShown: false, note }
