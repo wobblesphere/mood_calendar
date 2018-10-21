@@ -4,10 +4,9 @@ import { connect } from 'react-redux'
 import Actions from '../actions/actions.js';
 
 class CalendarDay extends Component {
-
   render() {
     return(
-      <div className={`day currentMonthDays  ${this.props.startingDayRecord} ${this.props.mood.get(this.props.date)}`}
+      <div className={`day currentMonthDays  ${this.props.startingDayRecord} ${this.props.moods.getIn([this.props.date, 'mood'])}`}
           onClick={()=> this.props.displayForm(this.props.date)}>
       {this.props.day}
     </div>
@@ -17,7 +16,7 @@ class CalendarDay extends Component {
 
 function mapStateToProps(state) {
   return {
-    mood: state.get("year2018Moods"),
+    moods: state.get("year2018Moods"),
   }
 }
 

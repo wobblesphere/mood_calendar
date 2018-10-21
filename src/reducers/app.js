@@ -24,7 +24,12 @@ function appReducer(state = INITIAL_STATE, action) {
     case('HIDE_YEAR_MENU'):
       return state.set("displayYearMenu", action.data);
     case('UPDATE_MOOD'):
-      return state.updateIn(['year2018Moods', action.data.squareID], val => action.data.mood).set("isPopUpShown", action.data.isPopUpShown);
+      return state.setIn(
+        ['year2018Moods', action.data.squareID], Map({
+          mood: action.data.mood,
+          note: action.data.note,
+        })
+      ).set("isPopUpShown", action.data.isPopUpShown);
     default:
       return state
   }
