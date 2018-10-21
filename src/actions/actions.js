@@ -12,17 +12,40 @@ function changeMonthBoard(month){
   }
 }
 
-function update_Mood(mood){
+function update_Mood(mood, squareID){
   return {
     type: "UPDATE_MOOD",
-    data: mood
+    data: mood,
+    squareID: squareID,
+    isPopUpShown: false,
   }
 }
 
-function showPopUP(){
+function showPopUP(squareID){
   return {
     type: 'SHOW_POP_UP',
     data: true,
+    squareID: squareID,
+  }
+}
+
+function hidePopUp(){
+  return {
+    type: "HIDE_POP_UP",
+  }
+}
+
+function toggleYearMenu(toggle){
+  return{
+    type:"TOGGLE_YEAR_MENU",
+    data: toggle,
+  }
+}
+
+function togglePageMask(toggle){
+  return{
+    type:"TOGGLE_PAGE_MASK",
+    data: toggle,
   }
 }
 
@@ -30,5 +53,8 @@ export default {
   changeMonthHeader,
   changeMonthBoard,
   showPopUP,
-  update_Mood
+  update_Mood,
+  toggleYearMenu,
+  hidePopUp,
+  togglePageMask
 }

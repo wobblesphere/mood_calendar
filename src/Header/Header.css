@@ -4,22 +4,25 @@
 
 .month_menu {
   height: 40px;
-  margin-left: 5px;
   font-family:  'Sarala', sans-serif;
+  border-bottom: 3px solid transparent;
 }
 
-
-.topBarMenu_item{
+.topBarMenu_item {
+  padding-top: 4px;
+  padding-bottom: 5px;
   font-size: 13px;
   display: inline-block;
-  width: 6.1rem;
+  width: 6.25rem;
   text-align: center;
 }
 
+.active {
+  border-bottom: 3px solid #67c7b7;
+}
 
 .topBarMenu_item:hover{
   background-color: #92C0FB;
-  font-size: 18px;
   cursor: pointer;
 }
 
@@ -29,41 +32,4 @@
   font-size: 60px;
   font-family: 'Cormorant Garamond', serif;
   color: #64ADD1;
-}
-
-.year:hover, .selectValue:hover, .dropbtn:hover {
-  cursor: pointer;
-}
-
-.yearSelect {
-  position: relative;
-  float: right;
-}
-
-.selectValue:hover{
-  background-color: #B7DBF0;
-}
-
-.dropbtn{
-  width: 80px;
-  height: 30px;
-  border-bottom-left-radius: 3px;
-  background-color: #D2EFEA;
-  border: none;
-  outline: none;
-  margin-top: 0;
-}
-
-.dropbtn:hover {
-  box-shadow: 0px 1px 15px -5px #ADCADB;
-}
-
-.dropDownMenu {
-  position: absolute;
-  display: block;
-  background: #D2EFEA;
-  width: 80px;
-  overflow: scroll;
-  top: 30px;
-  text-align: center;
 }

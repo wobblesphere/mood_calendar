@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import './CalendarDays.css';
 import Constants from '../constants.js';
 import Utils from '../utils.js';
+import "./CalendarMonth.css";
 import CalendarDay from "../CalendarDay/CalendarDay.js";
 
-class CalendarDays extends Component {
+class CalendarMonth extends Component {
   //sunday=0, monday=1, tuesday=2...
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     mood: "Good"
-  //   }
-  // }
 
   renderCalendarSquares(month) {
     //Create all the squares on the calendar
@@ -20,8 +14,8 @@ class CalendarDays extends Component {
     let startingDayRecord = startingDay;
     const monthTotalDays = Constants.monthDaysDict[month];
     const previousMonthTotalDay = Constants.monthDaysDict[Constants.months[(Constants.months.indexOf(month))-1]];
-
     //previous month days to fill in the squares before the first day of the month
+
     if(startingDay!== 7){
       if(month === "Jan"){
         for(let i = 0; i < startingDay; i++){
@@ -41,15 +35,19 @@ class CalendarDays extends Component {
         }
       }
     }
+    
 
     //current month's days
     for(let i = 1; i < monthTotalDays+1; i++){
       if(startingDayRecord === 7){
         startingDayRecord = 0;
       }
-
       squares.push(
-        <CalendarDay day={i} startingDayRecord={startingDayRecord} key={i} />
+        <CalendarDay
+              day={i}
+              date={this.props.month + i}
+              startingDayRecord={startingDayRecord}
+              key={i} />
       )
       startingDay++;
       startingDayRecord++;
@@ -73,4 +71,4 @@ class CalendarDays extends Component {
       return this.renderCalendarSquares(this.props.month);
     }
 }
-export default CalendarDays;
+export default CalendarMonth;

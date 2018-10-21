@@ -1,5 +1,3 @@
-// import React, { Component } from 'react';
-
 const monthDaysDict = {
   'Jan': 31,
   'Feb': 28,
@@ -15,6 +13,16 @@ const monthDaysDict = {
   'Dec': 31,
 };
 
+const Years = [2019, 2018, 2017];
+
+const yearStartingDayDict = {
+  '2018': 1,
+  '2019': 2,
+  '2020': 3,
+  '2021': 5,
+  '2022': 6,
+  '2023': 0,
+}
 const WEEKDAYS = {
   'Sunday': 0,
   'Monday': 1,
@@ -26,22 +34,30 @@ const WEEKDAYS = {
 }
 
 const moods = [
-  {'type':'Fantastic',
+  {'type':'fantastic',
     'text': 'Fantastic!',
   },
-  {'type': 'Good',
+  {'type': 'good',
     'text': 'Good',
   },
-  {'type': 'OK',
+  {'type': 'ok',
     'text': 'OK',
   },
-  {'type': 'Meh',
-    'text': 'Meh, could be better',
+  {'type': 'meh',
+    'text': 'Meh',
   },
-  {'type': 'Bad',
+  {'type': 'bad',
     'text': 'Bad',
   },
   ];
+
+const moodColor = {
+  'Fantastic':  '#ccf1c3',
+  'Good': '#f5c2e7',
+  'OK': '#bccbf5',
+  'Meh':'#d2d4da',
+  'Bad':'#f57676b0'
+}
 
 const YEAR_START_WEEKDAY = 'Monday';
 
@@ -52,5 +68,8 @@ export default {
   months,
   moods,
   WEEKDAYS,
-  YEAR_START_WEEKDAY
+  YEAR_START_WEEKDAY,
+  moodColor,
+  Years,
+  yearStartingDayDict
 }

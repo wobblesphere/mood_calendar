@@ -3,13 +3,19 @@ import './App.css';
 import Header from './Header/Header.js';
 import CalendarBoard from './CalendarBoard/CalendarBoard.js';
 import PopUpForm from './PopUpForm/PopUpForm.js';
+import CalendarLegend from "./CalendarLegend/CalendarLegend.js";
 import { connect } from 'react-redux'
 
 
 class App extends Component {
   renderForm(){
     if(this.props.isPopUpShown){
-      return <PopUpForm />
+      return (
+        <div>
+          <PopUpForm />
+          <div className="page-mask"></div>
+        </div>
+      )
     }
   }
 
@@ -19,6 +25,7 @@ class App extends Component {
         <Header/>
         <CalendarBoard />
         {this.renderForm()}
+        <CalendarLegend />
       </div>
     );
   }

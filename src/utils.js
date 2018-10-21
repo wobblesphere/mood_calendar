@@ -2,7 +2,7 @@ import Constants from './constants';
 
 // monthStartingDay gives the weekday that the month starts on as an integer
 // from 0 to 6
-function monthStartingDay(month) {
+function monthStartingDay(month, year) {
   // const currentMonthIndex = Constants.months.indexOf(month);
 
   // First, get the number of days that has passed

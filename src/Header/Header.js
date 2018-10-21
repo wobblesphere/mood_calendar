@@ -1,61 +1,31 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { connect } from 'react-redux'
-import { library } from '@fortawesome/fontawesome-svg-core'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-
+import YearSelectionMenu from "../YearSelectionMenu/YearSelectionMenu.js";
+import { connect } from 'react-redux';
 import Actions from '../actions/actions.js';
-
-library.add(faAngleLeft);
-library.add(faAngleRight);
+import Constants from '../constants.js';
 
 class Header extends Component {
-  constructor() {
-    super();
-    this.state = {
-      displayYearMenu: false,
-    }
-  }
-
   changeHeader__Month(month){
     this.props.changeMonth(month);
   }
 
-  displayYearMenuFunction(){
-    this.setState({
-      displayYearMenu: !this.state.displayYearMenu,
-    })
-  }
-
-  renderYearMenu() {
-    if(this.state.displayYearMenu){
-      return (
-        <div className="dropDownMenu" key="topBarMenu_item_year">
-          <div key="2019" className="selectValue" value="2019" onClick={()=>this.displayYearMenuFunction()}>2019</div>
-          <div key="2018" className="selectValue" value="2018" onClick={()=>this.displayYearMenuFunction()}>2018</div>
-          <div key="2017" className="selectValue" value="2017" onClick={()=>this.displayYearMenuFunction()}>2017</div>
-        </div>
-      )
+  isActive(month){
+    if(this.props.currentMonth === month){
+      return true
     }
+    return false
   }
 
   renderTopBarMenu() {
     let topBarMenu = [];
-    const menu = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const yearMenu = (
-                  <div key="yearSelect" className="yearSelect">
-                    <button key="dropbtn" className="dropbtn" onClick={()=>this.displayYearMenuFunction()}>Select Year</button>
-                      {this.renderYearMenu()}
-                  </div>
-    );
-    topBarMenu.push(yearMenu);
+    const yearMenuComponent = <YearSelectionMenu key="yearSelectionMenu"/>;
+    topBarMenu.push(yearMenuComponent);
 
-    for(let month of menu) {
+    for(let month of Constants.months) {
       topBarMenu.push(
         <div
-          className={month + " topBarMenu_item"}
+          className={month + " topBarMenu_item " + (this.isActive(month)? 'active' : null)}
           key={month}
           onClick={()=>this.changeHeader__Month(month)}>
           {month}
