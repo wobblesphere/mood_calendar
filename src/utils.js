@@ -35,6 +35,16 @@ function getRemainderDays(daysPassed, weeksPassed) {
   return daysPassed - (weeksPassed*7);
 }
 
+function getMood(state,squareID) {
+  return state.get("year2018Moods").get(squareID) && state.get("year2018Moods").get(squareID).get("mood")
+}
+
+function getNote(state, squareID) {
+  return state.get("year2018Moods").get(squareID) && state.get("year2018Moods").get(squareID).get("note");
+}
+
 export default {
-  monthStartingDay
+  monthStartingDay,
+  getMood,
+  getNote,
 }

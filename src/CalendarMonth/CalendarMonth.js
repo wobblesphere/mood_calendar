@@ -45,7 +45,7 @@ class CalendarMonth extends Component {
       squares.push(
         <CalendarDay
               day={i}
-              date={this.props.month + i}
+              squareID={this.props.month + i}
               startingDayRecord={startingDayRecord}
               key={i} />
       )

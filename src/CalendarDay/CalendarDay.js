@@ -4,11 +4,26 @@ import { connect } from 'react-redux'
 import Actions from '../actions/actions.js';
 
 class CalendarDay extends Component {
+  hasNote(){
+    if((this.props.moods.getIn([this.props.squareID, 'note'])) !== undefined){
+      return true
+    } 
+    return false
+  }
+
+  markNoteDaySquare(){
+    if(this.hasNote()){
+      return <div className="dayNoteMarked"> </div>
+    }
+    return null
+  }
+
   render() {
     return(
-      <div className={`day currentMonthDays  ${this.props.startingDayRecord} ${this.props.moods.getIn([this.props.date, 'mood'])}`}
-          onClick={()=> this.props.displayForm(this.props.date)}>
+      <div className={`day currentMonthDays  ${this.props.startingDayRecord} ${this.props.moods.getIn([this.props.squareID, 'mood'])}`}
+          onClick={()=> this.props.displayForm(this.props.squareID)}>
       {this.props.day}
+      {this.markNoteDaySquare()}
     </div>
     )
   }

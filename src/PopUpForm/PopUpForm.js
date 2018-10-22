@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import "./PopUpForm.css";
-import { connect } from 'react-redux'
-import Constants from '../constants.js'
+import { connect } from 'react-redux';
+import Constants from '../constants.js';
 import Actions from '../actions/actions.js';
+import Utils from '../utils.js';
 
 
 class PopUpForm extends Component {
   constructor(){
     super();
     this.state = {
-      note: "",
+      text: null,
       selectedMood: null,
     }
   }
@@ -22,12 +23,14 @@ class PopUpForm extends Component {
     return this.state.selectedMood === mood;
   }
 
+
   isHighlighted(mood) {
     if (this.state.selectedMood) {
       return this.isSelected(mood);
     }
     return this.isChosenMood(mood);
   }
+
 
   moodClicked(mood){
     this.setState({
@@ -60,15 +63,16 @@ class PopUpForm extends Component {
     )
   }
 
-  // renderClearButton(){
-  //   return(
-  //     <div className="clear formMoods"
-  //       key="clear"
-  //       onClick={()=>this.props.update_Mood(null,this.props.squareID)}>
-  //       clear mood
-  //     </div>
-  //   )
-  // }
+  submitMoodInfo(){
+    let updatedMood = (this.state.selectedMood)? this.state.selectedMood : this.props.squareMood;
+    let updatedNote = (this.state.text)? this.state.text : this.props.squareNote;
+    return(this.props.update_Mood({
+        mood: updatedMood,
+        squareID: this.props.squareID,
+        note: updatedNote,
+      })
+    );
+  }
 
   renderClearAndSubmitButtons(){
     return(
@@ -82,11 +86,7 @@ class PopUpForm extends Component {
           clear mood
         </div>
         <button className="moodFormSubmit" 
-                onClick={()=>this.props.update_Mood({
-                  mood: this.state.selectedMood,
-                  squareID: this.props.squareID,
-                  note: this.state.text
-                })}>
+                onClick={()=>this.submitMoodInfo()}>
                 Submit
         </button>
       </div>
@@ -97,6 +97,24 @@ class PopUpForm extends Component {
     this.setState({
       text: e.target.value,
     });
+
+  }
+
+  getNoteLength(){
+    if(this.state.text === null){
+      return 300
+    }else {
+      return 300 - this.state.text.length;
+    }
+  }
+
+  
+
+  isSquareNoteMarked(){
+    if(this.state.text){
+      return this.state.text;
+    }
+    return this.props.squareNote;
   }
 
   renderMoodNote(){
@@ -104,9 +122,10 @@ class PopUpForm extends Component {
       <div className="moodNoteDiv">
         <textarea className="moodNote" 
                    maxLength="300" 
-                  onChange={(e)=>this.onNoteChange(e)}>
+                  onChange={(e)=>this.onNoteChange(e)}
+                  defaultValue = {this.isSquareNoteMarked()}>
         </textarea>
-        <div className="maxCharacterNote">max characters: {300 - this.state.text.length} </div>
+        <div className="maxCharacterNote">max characters: {this.getNoteLength()} </div>
       </div>
     )
   }
@@ -128,7 +147,8 @@ function mapStateToProps(state){
   const squareID = state.get("clickedDay");
   return{
     squareID,
-    squareMood: state.get("year2018Moods").get(squareID),
+    squareMood: Utils.getMood(state, squareID),
+    squareNote: Utils.getNote(state, squareID),
   }
 }
 
