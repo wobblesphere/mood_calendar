@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import "./CalendarDay.css";
 import { connect } from 'react-redux'
 import Actions from '../actions/actions.js';
+import Utils from '../utils.js';
+
 
 class CalendarDay extends Component {
   hasNote(){
-    if((this.props.moods.getIn([this.props.squareID, 'note'])) !== undefined){
+    const dayNote = this.getDayInfo('note');
+    if(dayNote){
       return true
     } 
     return false
@@ -13,14 +16,19 @@ class CalendarDay extends Component {
 
   markNoteDaySquare(){
     if(this.hasNote()){
-      return <div className="dayNoteMarked"> </div>
+      return <div className={`dayNoteMarked ${this.getDayInfo("mood")}Marked`}> </div>
     }
     return null
   }
 
+  getDayInfo(info){
+    return Utils.CalendarDay_getDayInfo(this.props.moods, this.props.squareID, info);
+  }
+
   render() {
     return(
-      <div className={`day currentMonthDays  ${this.props.startingDayRecord} ${this.props.moods.getIn([this.props.squareID, 'mood'])}`}
+      <div className={`day currentMonthDays  ${this.props.startingDayRecord} 
+                    ${this.getDayInfo('mood')}`}
           onClick={()=> this.props.displayForm(this.props.squareID)}>
       {this.props.day}
       {this.markNoteDaySquare()}

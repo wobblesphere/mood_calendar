@@ -51,7 +51,26 @@
   position: absolute;
   top: 90%;
   left: 90%;
-  border: 6px solid purple;
   border-radius: 10px;
 
+}
+
+.fantasticMarked{
+  border: 6px solid rgb(93, 167, 74);
+}
+
+.goodMarked{
+  border: 6px solid rgb(165, 83, 143);
+}
+
+.mehMarked{
+  border: 6px solid rgb(107, 109, 116);
+}
+
+.okMarked{
+  border: 6px solid rgb(69, 95, 167);
+}
+
+.badMarked{
+  border: 6px solid rgb(179, 57, 78);
 }

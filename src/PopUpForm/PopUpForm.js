@@ -65,7 +65,7 @@ class PopUpForm extends Component {
 
   submitMoodInfo(){
     let updatedMood = (this.state.selectedMood)? this.state.selectedMood : this.props.squareMood;
-    let updatedNote = (this.state.text)? this.state.text : this.props.squareNote;
+    let updatedNote = (this.state.text || (this.state.text===""))? this.state.text : this.props.squareNote;
     return(this.props.update_Mood({
         mood: updatedMood,
         squareID: this.props.squareID,
@@ -81,9 +81,9 @@ class PopUpForm extends Component {
           key="clear"
           onClick={()=>this.props.update_Mood({
             mood: null,
-            squareID: this.props.squareID
+            squareID: this.props.squareID,
           })}>
-          clear mood
+          clear all
         </div>
         <button className="moodFormSubmit" 
                 onClick={()=>this.submitMoodInfo()}>
@@ -97,7 +97,6 @@ class PopUpForm extends Component {
     this.setState({
       text: e.target.value,
     });
-
   }
 
   getNoteLength(){
@@ -108,9 +107,8 @@ class PopUpForm extends Component {
     }
   }
 
-  
 
-  isSquareNoteMarked(){
+  squareNote(){
     if(this.state.text){
       return this.state.text;
     }
@@ -123,7 +121,7 @@ class PopUpForm extends Component {
         <textarea className="moodNote" 
                    maxLength="300" 
                   onChange={(e)=>this.onNoteChange(e)}
-                  defaultValue = {this.isSquareNoteMarked()}>
+                  defaultValue = {this.squareNote()}>
         </textarea>
         <div className="maxCharacterNote">max characters: {this.getNoteLength()} </div>
       </div>

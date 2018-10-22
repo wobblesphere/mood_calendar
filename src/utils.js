@@ -43,8 +43,13 @@ function getNote(state, squareID) {
   return state.get("year2018Moods").get(squareID) && state.get("year2018Moods").get(squareID).get("note");
 }
 
+function CalendarDay_getDayInfo(moodDict, squareID, info){
+  return moodDict.getIn([squareID, info]);
+}
+
 export default {
   monthStartingDay,
   getMood,
   getNote,
+  CalendarDay_getDayInfo,
 }
