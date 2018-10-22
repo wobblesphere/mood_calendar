@@ -2,14 +2,36 @@ import React, { Component } from 'react';
 import "./CalendarDay.css";
 import { connect } from 'react-redux'
 import Actions from '../actions/actions.js';
+import Utils from '../utils.js';
+
 
 class CalendarDay extends Component {
+  hasNote(){
+    const dayNote = this.getDayInfo('note');
+    if(dayNote){
+      return true
+    } 
+    return false
+  }
+
+  markNoteDaySquare(){
+    if(this.hasNote()){
+      return <div className={`dayNoteMarked ${this.getDayInfo("mood")}Marked`}> </div>
+    }
+    return null
+  }
+
+  getDayInfo(info){
+    return Utils.CalendarDay_getDayInfo(this.props.moods, this.props.squareID, info);
+  }
 
   render() {
     return(
-      <div className={`day currentMonthDays  ${this.props.startingDayRecord} ${this.props.mood.get(this.props.date)}`}
-          onClick={()=> this.props.displayForm(this.props.date)}>
+      <div className={`day currentMonthDays  ${this.props.startingDayRecord} 
+                    ${this.getDayInfo('mood')}`}
+          onClick={()=> this.props.displayForm(this.props.squareID)}>
       {this.props.day}
+      {this.markNoteDaySquare()}
     </div>
     )
   }
@@ -17,7 +39,7 @@ class CalendarDay extends Component {
 
 function mapStateToProps(state) {
   return {
-    mood: state.get("year2018Moods"),
+    moods: state.get("year2018Moods"),
   }
 }
 
