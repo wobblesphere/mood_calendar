@@ -37,7 +37,7 @@ class OutsideAlerter extends Component {
   }
 
   render() {
-    return <div className="yearButtonWrapper" ref={this.setWrapperRef}>{this.props.children}</div>;
+    return <div ref={this.setWrapperRef}>{this.props.children}</div>;
   }
 }
 

@@ -1,8 +1,8 @@
 .day {
-  position: relative;
   border: 1px solid gray;
-  height: 9rem;
-  width: 9rem;
+  height: 23%;
+  width: 13.8%;
+  position: relative;
   font-family: 'Cormorant Garamond', serif;
   display: inline-block;
   margin-right: -1px;

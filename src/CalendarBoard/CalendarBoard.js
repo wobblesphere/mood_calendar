@@ -22,7 +22,9 @@ class CalendarBoard extends Component{
     return (
       <div className="board">
         {this.renderCalendarMonToSun()}
-        <CalendarMonth month={this.props.currentMonth} />
+        <div className="calendarSquares" key="calendarSquares">
+          <CalendarMonth month={this.props.currentMonth} />
+        </div>
       </div>
     )
   }

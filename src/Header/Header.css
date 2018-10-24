@@ -28,7 +28,8 @@
 }
 
 .month_Header {
-  margin-top: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   text-align: center;
   font-size: 60px;
   font-family: 'Cormorant Garamond', serif;

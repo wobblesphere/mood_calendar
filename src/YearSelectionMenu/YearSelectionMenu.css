@@ -3,11 +3,10 @@
   cursor: pointer;
 }
 
+
 .topBarMenu_item_year {
-  position: relative;
-  float:right;
+  float: right;
   font-size: 13px;
-  display: inline-block;
   width: 7.6%;
   text-align: center;
 }
@@ -33,9 +32,8 @@
 
 .dropDownMenu {
   position: absolute;
-  display: block;
-  background: #D2EFEA;
-  width: 100%;
+  background-color: #D2EFEA;
+  width: 7.6%;
   top: 30px;
   text-align: center;
 }

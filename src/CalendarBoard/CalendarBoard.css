@@ -1,14 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Niconne');
 
-
 .board {
   margin: 0 auto;
-  width: 65rem;
+  width: 70%;
+  height: 90%;
+}
+
+.calendarSquares{
+  margin: 0 auto;
+  width: 80%;
+  height: 80%;
+}
+
+.MondayToSunday{
+  width: 80%;
+  margin: 0 auto;
 }
 
 p {
   display: inline-block;
-  width: 9.28rem;
+  width: 14%;
   padding-bottom: 0;
   font-size: 20px;
   font-family:  'Niconne', cursive;
