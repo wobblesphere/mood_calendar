@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../actions/actions.js';
+import "./YearSelectionMenu.css";
 
 
 class OutsideAlerter extends Component {
@@ -36,7 +37,7 @@ class OutsideAlerter extends Component {
   }
 
   render() {
-    return <div ref={this.setWrapperRef}>{this.props.children}</div>;
+    return <div className="yearButtonWrapper" ref={this.setWrapperRef}>{this.props.children}</div>;
   }
 }
 

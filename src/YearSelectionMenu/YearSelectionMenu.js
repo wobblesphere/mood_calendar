@@ -30,7 +30,7 @@ class YearSelectionMenu extends Component {
   render(){
     return(
       <OutsideAlerter>
-        <div key="yearSelect" className="yearMenu">
+        <div key="yearSelect" className="topBarMenu_item_year">
           <button key="dropbtn" className="dropbtn"
                   onClick={()=>this.props.toggleYearMenu(!this.props.displayYearMenu)}
                   >Select Year

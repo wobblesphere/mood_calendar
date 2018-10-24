@@ -4,6 +4,7 @@
 
 .month_menu {
   height: 40px;
+  width: 100%;
   font-family:  'Sarala', sans-serif;
   border-bottom: 3px solid transparent;
 }
@@ -13,7 +14,7 @@
   padding-bottom: 5px;
   font-size: 13px;
   display: inline-block;
-  width: 6.25rem;
+  width: 7.6%;
   text-align: center;
 }
 

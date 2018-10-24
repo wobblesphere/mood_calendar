@@ -1,19 +1,23 @@
-.yearMenu {
-  position: relative;
-  float: right;
-}
 
  .year:hover, .dropbtn:hover {
   cursor: pointer;
 }
 
+.topBarMenu_item_year {
+  position: relative;
+  float:right;
+  font-size: 13px;
+  display: inline-block;
+  width: 7.6%;
+  text-align: center;
+}
 
 .year:hover{
   background-color: #B7DBF0;
 }
 
 .dropbtn{
-  width: 80px;
+  width: 100%;
   height: 30px;
   font-weight: bold;
   border-bottom-left-radius: 3px;
@@ -31,8 +35,7 @@
   position: absolute;
   display: block;
   background: #D2EFEA;
-  width: 80px;
-  overflow: scroll;
+  width: 100%;
   top: 30px;
   text-align: center;
 }
