@@ -2,7 +2,7 @@
 
 .board {
   margin: 0 auto;
-  width: 70%;
+  width: 90%;
   height: 90%;
 }
 
@@ -13,7 +13,8 @@
 }
 
 .MondayToSunday{
-  width: 80%;
+  padding-left: 0.5rem;
+  width: 80.5%;
   margin: 0 auto;
 }
 
