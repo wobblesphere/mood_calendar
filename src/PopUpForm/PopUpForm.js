@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Constants from '../constants.js';
 import Actions from '../actions/actions.js';
 import Utils from '../utils.js';
+import axios from 'axios';
 
 
 class PopUpForm extends Component {
@@ -63,15 +64,33 @@ class PopUpForm extends Component {
     )
   }
 
+  sendServerDayInfo(){
+    var dayInfo = new FormData();
+    dayInfo.append('squareID', this.props.squareID);
+    dayInfo.append('mood', this.state.selectedMood);
+    dayInfo.append('note', this.state.text);
+
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:5000/store_mood',
+      data: dayInfo,
+      config: { headers: {'Content-Type': 'multipart/form-data' }}
+      })
+      .then(() => {})
+      .catch((response) => {
+          console.log(response);
+      });
+  }
+
   submitMoodInfo(){
-    let updatedMood = (this.state.selectedMood)? this.state.selectedMood : this.props.squareMood;
-    let updatedNote = (this.state.text || (this.state.text===""))? this.state.text : this.props.squareNote;
-    return(this.props.update_Mood({
+    let updatedMood = (this.state.selectedMood) ? this.state.selectedMood : this.props.squareMood;
+    let updatedNote = (this.state.text || (this.state.text === ""))? this.state.text : this.props.squareNote;
+    this.props.update_Mood({
         mood: updatedMood,
         squareID: this.props.squareID,
         note: updatedNote,
       })
-    );
+    this.sendServerDayInfo();
   }
 
   renderClearAndSubmitButtons(){

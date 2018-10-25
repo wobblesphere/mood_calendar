@@ -33,11 +33,18 @@ class App extends Component {
   }
 
   updateMood(response){
-    this.props.update_Mood({
-      mood: response.data.mood, 
-      squareID: response.data.squareID, 
-      note: response.data.note
-    });
+    const yearMoods = response.data;
+    for (var key in yearMoods){
+      let squareID = key;
+      let value = yearMoods[key];
+      let mood = value['mood'];
+      let note = value['note'];
+      this.props.update_Mood({
+        mood: mood,
+        squareID: squareID,
+        note: note
+      })
+    }
   }
 
   getSubmittedMood() {
