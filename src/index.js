@@ -9,8 +9,6 @@ import * as serviceWorker from './serviceWorker';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './saga';
 
-//import saga functions
-
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
@@ -20,9 +18,8 @@ const store = createStore(
      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
    )
  );
+ 
  sagaMiddleware.run(rootSaga);
-
- //run saga, e.g. sagaMiddleware.run(**imported sage function name**)
 
 ReactDOM.render(
   <Provider store={store}>

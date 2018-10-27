@@ -5,7 +5,6 @@ import CalendarBoard from './CalendarBoard/CalendarBoard.js';
 import PopUpForm from './PopUpForm/PopUpForm.js';
 import CalendarLegend from "./CalendarLegend/CalendarLegend.js";
 import { connect } from 'react-redux'
-import axios from 'axios';
 import Actions from './actions/actions.js';
 
 

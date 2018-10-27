@@ -1,4 +1,4 @@
-import { all, call, put, take, takeEvery } from 'redux-saga/effects'
+import { all, call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios';
 import Actions from './actions/actions.js';
 
@@ -24,12 +24,31 @@ function* appMounted() {
     yield call(updateMood, response);
 }
 
+function* submitDayInfo(action) {
+    const dayInfo = new FormData();
+    dayInfo.append('squareID', action.data.squareID);
+    dayInfo.append('mood', action.data.mood);
+    dayInfo.append('note', action.data.note);
+
+    yield call(axios, {
+        method: 'POST',
+        url: 'http://127.0.0.1:5000/store_mood',
+        data: dayInfo,
+        config: { headers: {'Content-Type': 'multipart/form-data' }}
+    })
+}
+
 export function* watchAppMounted() {
     yield takeEvery('APP_MOUNTED', appMounted)
 }
 
+export function* watchSubmitDayInfo() {
+    yield takeEvery('UPDATE_MOOD', submitDayInfo)
+}
+
 export default function* rootSaga() {
     yield all([
-      watchAppMounted()
+      watchAppMounted(),
+      watchSubmitDayInfo()
     ])
   }

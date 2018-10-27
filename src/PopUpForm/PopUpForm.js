@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Constants from '../constants.js';
 import Actions from '../actions/actions.js';
 import Utils from '../utils.js';
-import axios from 'axios';
 
 
 class PopUpForm extends Component {
@@ -64,33 +63,24 @@ class PopUpForm extends Component {
     )
   }
 
-  sendServerDayInfo(squareID, mood, note){
-    var dayInfo = new FormData();
-    dayInfo.append('squareID', squareID);
-    dayInfo.append('mood', mood);
-    dayInfo.append('note', note);
-
-    axios({
-      method: 'post',
-      url: 'http://127.0.0.1:5000/store_mood',
-      data: dayInfo,
-      config: { headers: {'Content-Type': 'multipart/form-data' }}
-      })
-      .then(() => {})
-      .catch((response) => {
-          console.log(response);
-      });
+  updatedNote(){
+    if((this.state.text === "") || (this.state.text === null)){
+      return ""
+    } else if (this.state.text){
+      return this.state.text
+    } else {
+      return this.props.squareNote
+    }
   }
 
   submitMoodInfo(){
     let updatedMood = (this.state.selectedMood) ? this.state.selectedMood : this.props.squareMood;
-    let updatedNote = (this.state.text || (this.state.text === ""))? this.state.text : this.props.squareNote;
+    let updatedNote = this.updatedNote();
     this.props.update_Mood({
         mood: updatedMood,
         squareID: this.props.squareID,
         note: updatedNote,
       })
-    this.sendServerDayInfo(this.props.squareID, updatedMood, updatedNote);
   }
 
   renderClearAndSubmitButtons(){

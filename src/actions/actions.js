@@ -25,6 +25,7 @@ function appMounted() {
   }
 }
 
+
 function showPopUP(squareID){
   return {
     type: 'TOGGLE_POP_UP',
@@ -61,5 +62,5 @@ export default {
   update_Mood,
   toggleYearMenu,
   hidePopUp,
-  togglePageMask
+  togglePageMask,
 }
