@@ -64,11 +64,11 @@ class PopUpForm extends Component {
     )
   }
 
-  sendServerDayInfo(){
+  sendServerDayInfo(squareID, mood, note){
     var dayInfo = new FormData();
-    dayInfo.append('squareID', this.props.squareID);
-    dayInfo.append('mood', this.state.selectedMood);
-    dayInfo.append('note', this.state.text);
+    dayInfo.append('squareID', squareID);
+    dayInfo.append('mood', mood);
+    dayInfo.append('note', note);
 
     axios({
       method: 'post',
@@ -90,7 +90,7 @@ class PopUpForm extends Component {
         squareID: this.props.squareID,
         note: updatedNote,
       })
-    this.sendServerDayInfo();
+    this.sendServerDayInfo(this.props.squareID, updatedMood, updatedNote);
   }
 
   renderClearAndSubmitButtons(){
@@ -98,10 +98,13 @@ class PopUpForm extends Component {
       <div>
         <div className="clear"
           key="clear"
-          onClick={()=>this.props.update_Mood({
-            mood: null,
-            squareID: this.props.squareID,
-          })}>
+          onClick={()=>{
+            this.props.update_Mood(
+              {mood: null,
+                squareID: this.props.squareID,
+              });
+            this.sendServerDayInfo(this.props.squareID, null, "");
+        }}>
           clear all
         </div>
         <button className="moodFormSubmit" 
