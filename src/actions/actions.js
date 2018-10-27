@@ -19,6 +19,12 @@ function update_Mood({mood, squareID, note}){
   }
 }
 
+function appMounted() {
+  return {
+    type: 'APP_MOUNTED'
+  }
+}
+
 function showPopUP(squareID){
   return {
     type: 'TOGGLE_POP_UP',
@@ -49,6 +55,7 @@ function togglePageMask(toggle){
 
 export default {
   changeMonthHeader,
+  appMounted,
   changeMonthBoard,
   showPopUP,
   update_Mood,
