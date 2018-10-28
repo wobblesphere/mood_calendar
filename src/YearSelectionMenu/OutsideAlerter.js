@@ -32,6 +32,9 @@ class OutsideAlerter extends Component {
    */
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      if(event.target.className === 'page-mask'){
+        this.props.hidePopUp();
+      }
       this.props.toggleYearMenu(false);
     }
   }
@@ -42,16 +45,15 @@ class OutsideAlerter extends Component {
 }
 
 function mapStateToProps(state){
-  return{
-    displayYearMenu: state.get("displayYearMenu"),
-  }
+  return{}
 }
 
 function mapDispatchToProps(dispatch){
   return {
     toggleYearMenu: (toggle) => {
       dispatch(Actions.toggleYearMenu(toggle))
-    }
+    },
+    hidePopUp: () => {dispatch(Actions.hidePopUp())}
   }
 }
 

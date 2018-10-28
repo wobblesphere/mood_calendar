@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Constants from '../constants.js';
 import Actions from '../actions/actions.js';
 import Utils from '../utils.js';
+import OutsideAlerter from '../YearSelectionMenu/OutsideAlerter.js';
 
 
 class PopUpForm extends Component {
@@ -51,14 +52,6 @@ class PopUpForm extends Component {
     return (
       <div className="moodSelection" key="moodSelections">
         {moodList}
-      </div>
-    )
-  }
-
-  renderDeleteButton(){
-    return(
-      <div className="deleteButton" onClick={()=>this.props.hidePopUp()}>
-        x
       </div>
     )
   }
@@ -142,13 +135,14 @@ class PopUpForm extends Component {
 
   render(){
     return (
-      <div className="moodForm" key="moodForm">
-        <h2 key="formHeader">Rate your day on <div className="formDate">{this.props.squareID}</div> : </h2>
-        {this.createMoodList()}
-        {this.renderMoodNote()}
-        {this.renderDeleteButton()}
-        {this.renderClearAndSubmitButtons()}
-      </div>
+      <OutsideAlerter>
+        <div className="moodForm" key="moodForm">
+          <h2 key="formHeader">Rate your day on <div className="formDate">{this.props.squareID}</div> : </h2>
+          {this.createMoodList()}
+          {this.renderMoodNote()}
+          {this.renderClearAndSubmitButtons()}
+        </div>
+      </OutsideAlerter>
     )
   }
 }
