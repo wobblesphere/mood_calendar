@@ -57,7 +57,7 @@ class PopUpForm extends Component {
   }
 
   updatedNote(){
-    if((this.state.text === "") || (this.state.text === null)){
+    if((this.state.text === "")){
       return ""
     } else if (this.state.text){
       return this.state.text
@@ -85,9 +85,10 @@ class PopUpForm extends Component {
             this.props.update_Mood(
               {mood: null,
                 squareID: this.props.squareID,
+                note: "",
               });
-            this.sendServerDayInfo(this.props.squareID, null, "");
-        }}>
+          }
+        }>
           clear all
         </div>
         <button className="moodFormSubmit" 
@@ -112,21 +113,13 @@ class PopUpForm extends Component {
     }
   }
 
-
-  squareNote(){
-    if(this.state.text){
-      return this.state.text;
-    }
-    return this.props.squareNote;
-  }
-
   renderMoodNote(){
     return(
       <div className="moodNoteDiv">
         <textarea className="moodNote" 
                    maxLength="300" 
                   onChange={(e)=>this.onNoteChange(e)}
-                  defaultValue = {this.squareNote()}>
+                  defaultValue = {this.updatedNote()}>
         </textarea>
         <div className="maxCharacterNote">max characters: {this.getNoteLength()} </div>
       </div>
@@ -149,10 +142,12 @@ class PopUpForm extends Component {
 
 function mapStateToProps(state){
   const squareID = state.get("clickedDay");
+  const moodDict = state.get('year2018Moods');
   return{
     squareID,
-    squareMood: Utils.getMood(state, squareID),
-    squareNote: Utils.getNote(state, squareID),
+    moodDict,
+    squareMood: Utils.getDayInfo(moodDict, squareID, 'mood'),
+    squareNote: Utils.getDayInfo(moodDict, squareID, 'note'),
   }
 }
 

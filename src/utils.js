@@ -35,21 +35,13 @@ function getRemainderDays(daysPassed, weeksPassed) {
   return daysPassed - (weeksPassed*7);
 }
 
-function getMood(state,squareID) {
-  return state.get("year2018Moods").get(squareID) && state.get("year2018Moods").get(squareID).get("mood")
-}
-
-function getNote(state, squareID) {
-  return state.get("year2018Moods").get(squareID) && state.get("year2018Moods").get(squareID).get("note");
-}
-
-function CalendarDay_getDayInfo(moodDict, squareID, info){
-  return moodDict.getIn([squareID, info]);
+function getDayInfo(moodDict, squareID, info){
+  let month = squareID.substr(0, 3);
+  let day = squareID.substr(3, (squareID.length));
+  return moodDict.getIn([month, day, info]);
 }
 
 export default {
   monthStartingDay,
-  getMood,
-  getNote,
-  CalendarDay_getDayInfo,
+  getDayInfo,
 }

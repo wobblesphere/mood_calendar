@@ -15,6 +15,7 @@
 .MondayToSunday{
   padding-left: 0.5rem;
   width: 80.5%;
+  cursor: default;
   margin: 0 auto;
 }
 

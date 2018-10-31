@@ -1,8 +1,6 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects'
+import { all, call, put, takeEvery, select, take } from 'redux-saga/effects'
 import axios from 'axios';
 import Actions from './actions/actions.js';
-
-
 
 function* updateMood(response){
     const yearMoods = response.data;
@@ -38,12 +36,36 @@ function* submitDayInfo(action) {
     })
 }
 
+function getMoods(state) {
+    return state.get('year2018Moods');
+}
+
+export function* updateMoodCounts() {
+    const moodCounts = {};
+    const moods = yield select(getMoods);
+    for(let [month, dayInfo] of moods.entries()) {
+        moodCounts[month] = {};
+        for (let [_, moodInfo] of dayInfo.entries()) {
+            const mood = moodInfo.get('mood');
+            if (!(mood in moodCounts[month])){
+                moodCounts[month][mood] = 0;
+            }
+            moodCounts[month][mood] += 1;
+        }
+    }
+    yield put(Actions.updateMoodCounts(moodCounts));
+}
+
 export function* watchAppMounted() {
     yield takeEvery('APP_MOUNTED', appMounted)
 }
 
 export function* watchSubmitDayInfo() {
-    yield takeEvery('UPDATE_MOOD', submitDayInfo)
+    while (true) {
+        const action = yield take('UPDATE_MOOD');
+        yield call(submitDayInfo, action);
+        yield call(updateMoodCounts);
+    }
 }
 
 export default function* rootSaga() {

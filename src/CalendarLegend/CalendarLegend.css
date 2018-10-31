@@ -5,7 +5,8 @@
   position: sticky;
   bottom: 0;
   display: block;
-  width: 80px;
+  min-width: 100px;
+  max-width: 108px;
 }
 
 .legend_Mood {
@@ -14,11 +15,13 @@
   padding-bottom: 8px;
   margin-bottom: 4px; 
   font-family: 'Text Me One', sans-serif;
-  border-bottom-right-radius: 12px;;
+  border-bottom-right-radius: 12px;
+  cursor: default;
 }
 
 .legend_Fantastic {
   background-color: #ccf1c3;
+  /* width: 105px; */
 }
 
 .legend_Good {
@@ -35,4 +38,11 @@
 
 .legend_Bad{
   background-color: #f57676b0;
+}
+
+.ratings {
+  display: inline-block;
+  padding-right: 5px;
+  float: right;
+  cursor: default;
 }

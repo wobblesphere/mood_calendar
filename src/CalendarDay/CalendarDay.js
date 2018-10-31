@@ -22,7 +22,7 @@ class CalendarDay extends Component {
   }
 
   getDayInfo(info){
-    return Utils.CalendarDay_getDayInfo(this.props.moods, this.props.squareID, info);
+    return Utils.getDayInfo(this.props.moods, this.props.squareID, info);
   }
 
   render() {
