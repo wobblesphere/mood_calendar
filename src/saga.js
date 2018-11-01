@@ -1,6 +1,7 @@
 import { all, call, put, takeEvery, select, take } from 'redux-saga/effects'
 import axios from 'axios';
 import Actions from './actions/actions.js';
+import Constants from './constants.js';
 
 function* updateMood(response){
     const yearMoods = response.data;
@@ -57,7 +58,11 @@ export function* updateMoodCounts() {
 }
 
 export function* watchAppMounted() {
-    yield takeEvery('APP_MOUNTED', appMounted)
+    while (true) {
+        const action = yield take('APP_MOUNTED');
+        yield call(appMounted);
+        yield call(updateCurrentDate);
+    }
 }
 
 export function* watchSubmitDayInfo() {
@@ -68,9 +73,18 @@ export function* watchSubmitDayInfo() {
     }
 }
 
+export function* updateCurrentDate() {
+    let date = {}
+    let today = new Date();
+    date['day'] =  today.getDate();
+    date['month'] = Constants.numberToMonth[today.getMonth()+1]; 
+    date['year'] = today.getFullYear();
+    yield put(Actions.updateCurrentDate(date));
+}
+
 export default function* rootSaga() {
     yield all([
       watchAppMounted(),
-      watchSubmitDayInfo()
+      watchSubmitDayInfo(),
     ])
   }

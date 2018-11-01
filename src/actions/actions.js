@@ -25,6 +25,15 @@ function appMounted() {
   }
 }
 
+function updateCurrentDate({day, month, year}) {
+  return {
+    type: 'UPDATE_CURRENT_DATE',
+    data: {
+      day,month,year
+    }
+  }
+}
+
 
 function showPopUP(squareID){
   return {
@@ -69,5 +78,6 @@ export default {
   toggleYearMenu,
   hidePopUp,
   togglePageMask,
-  updateMoodCounts
+  updateMoodCounts,
+  updateCurrentDate
 }

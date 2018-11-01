@@ -2,12 +2,14 @@ import { Map } from 'immutable';
 
 const INITIAL_STATE = Map({
   currentMonth: 'Jan',
+  currentYear: '2018',
   displayYearMenu: false,
   isPopUpShown: false,
   clickedDay: "none",
   year2018Moods: Map({}),
   showPageMask: false,
   year2018MonthlyMoodRecords: Map({}),
+  currentDate: {}
 });
 
 
@@ -37,25 +39,13 @@ function appReducer(state = INITIAL_STATE, action) {
       ).set("isPopUpShown", action.data.isPopUpShown);
     case('UPDATE_MOOD_COUNTS'):
         return state.setIn(
-          ['year2018MonthlyMoodRecords'], action.data
-        );
+          ['year2018MonthlyMoodRecords'], action.data);
+    case('UPDATE_CURRENT_DATE'):
+      return state.setIn(['currentDate'], action.data
+      ).set('currentMonth', action.data['month']);
     default:
       return state
   }
 }
-
-// function setMoodCounts(state, month, mood){
-//   if (mood) {
-//     let moodCount = state.getIn(['year2018MonthlyMoodRecords', month, mood]);
-//     if(moodCount){
-//       return state.setIn(
-//         ['year2018MonthlyMoodRecords', month, mood], moodCount++
-//         )
-//     }
-//     return state.setIn(
-//       ['year2018MonthlyMoodRecords', month, mood], 1
-//       )
-//   }
-// }
 
 export default appReducer;

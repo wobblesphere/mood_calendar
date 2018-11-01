@@ -25,10 +25,18 @@ class CalendarDay extends Component {
     return Utils.getDayInfo(this.props.moods, this.props.squareID, info);
   }
 
+  isCurrentDate(squareID){
+    const currentDate = this.props.currentMonth + this.props.currentDay;
+    if(squareID === currentDate){
+      return "currentDate"
+    } 
+  }
+
   render() {
+    console.log(this.props.currentDay, this.props.currentMonth, this.props.currentYear)
     return(
       <div className={`day currentMonthDays  ${this.props.startingDayRecord} 
-                    ${this.getDayInfo('mood')}`}
+                    ${this.getDayInfo('mood')} ${this.isCurrentDate(this.props.squareID)}`}
           onClick={()=> this.props.displayForm(this.props.squareID)}>
       {this.props.day}
       {this.markNoteDaySquare()}
@@ -40,6 +48,9 @@ class CalendarDay extends Component {
 function mapStateToProps(state) {
   return {
     moods: state.get("year2018Moods"),
+    currentDay: state.get('currentDate')['day'],
+    currentMonth: state.get('currentDate')['month'],
+    currentYear: state.get('currentDate')['year'],
   }
 }
 
