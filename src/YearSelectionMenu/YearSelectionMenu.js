@@ -33,7 +33,7 @@ class YearSelectionMenu extends Component {
         <div key="yearSelect" className="topBarMenu_item_year">
           <button key="dropbtn" className="dropbtn"
                   onClick={()=>this.props.toggleYearMenu(!this.props.displayYearMenu)}
-                  >Select Year
+                  >{this.props.currentYear}
           </button>
           {this.renderYearMenu()}
         </div>
@@ -45,6 +45,7 @@ class YearSelectionMenu extends Component {
 function mapStateToProps(state){
   return{
     displayYearMenu: state.get("displayYearMenu"),
+    currentYear: state.get('currentYear'),
   }
 }
 

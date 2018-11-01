@@ -55,6 +55,11 @@
 
 }
 
+.currentDate{
+  color:#FF7800;
+  text-decoration: underline;
+}
+
 .fantasticMarked{
   border: 6px solid rgb(93, 167, 74);
 }
