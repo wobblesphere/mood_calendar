@@ -33,7 +33,6 @@ class CalendarDay extends Component {
   }
 
   render() {
-    console.log(this.props.currentDay, this.props.currentMonth, this.props.currentYear)
     return(
       <div className={`day currentMonthDays  ${this.props.startingDayRecord} 
                     ${this.getDayInfo('mood')} ${this.isCurrentDate(this.props.squareID)}`}

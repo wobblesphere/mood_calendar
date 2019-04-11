@@ -13,7 +13,7 @@ const monthDaysDict = {
   'Dec': 31,
 };
 
-const Years = [2019, 2018, 2017];
+const Years = [2018];
 
 const yearStartingDayDict = {
   '2018': 1,

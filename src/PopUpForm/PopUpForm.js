@@ -57,7 +57,7 @@ class PopUpForm extends Component {
   }
 
   updatedNote(){
-    if((this.state.text === "")){
+    if((this.state.text === "") || (this.state.text === null)){
       return ""
     } else if (this.state.text){
       return this.state.text
