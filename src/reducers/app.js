@@ -3,12 +3,11 @@ import { Map } from 'immutable';
 const INITIAL_STATE = Map({
   currentMonth: 'Jan',
   currentYear: '2018',
-  displayYearMenu: false,
   isPopUpShown: false,
   clickedDay: "none",
-  year2018Moods: {},
+  year2018Moods: JSON.parse(window.localStorage.getItem("moodsCollection")),
   showPageMask: false,
-  // year2018MonthlyMoodRecords: Map({}),
+  moodCounts: JSON.parse(window.localStorage.getItem("moodCounts")),
   currentDate: {}
 });
 
@@ -22,21 +21,28 @@ function appReducer(state = INITIAL_STATE, action) {
         {"isPopUpShown": action.data.isPopUpShown,
         "clickedDay": action.data.squareID}
       );
-    case('TOGGLE_YEAR_MENU'):
-      return state.set("displayYearMenu", action.data);
-    case('HIDE_YEAR_MENU'):
-      return state.set("displayYearMenu", action.data);
     case('UPDATE_MOOD'):
-        return updateMood(action.data, state)
-    // case('UPDATE_MOOD_COUNTS'):
-    //     return state.setIn(
-    //       ['year2018MonthlyMoodRecords'], action.data);
-    case('UPDATE_CURRENT_DATE'):
-      return state.setIn(['currentDate'], action.data
-      ).set('currentMonth', action.data['month']);
+        return updateMood(action.data, state);
+    case('UPDATE_MOOD_COUNTS'):
+        return updateMoodCounts(action.data, state);
     default:
       return state
   }
+}
+
+function updateMoodCounts(dayInfo, state) {
+  //dayInfo includes squareID and mood
+  let month = dayInfo.squareID.substr(0, 3);
+  let mood = dayInfo.mood
+  let moodCounts =  JSON.parse(window.localStorage.getItem("moodCounts"));
+  const moodCountOfMonth = moodCounts[month][mood];
+  if (!moodCountOfMonth) {
+    moodCounts[month][mood] = 1;
+  } else {
+    moodCounts[month][mood] = moodCountOfMonth+1;
+  }
+  window.localStorage.setItem("moodCounts", JSON.stringify(moodCounts));
+  return state.set("moodCounts", moodCounts);
 }
 
 function updateMood(dayInfo, state) {

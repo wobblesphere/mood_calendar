@@ -63,18 +63,20 @@ function togglePageMask(toggle){
   }
 }
 
-// function updateMoodCounts(moodCounts){
-//   return{
-//     type: "UPDATE_MOOD_COUNTS",
-//     data: moodCounts,
-//   }
-// }
+function updateMoodCounts({squareID, mood}){
+  return{
+    type: "UPDATE_MOOD_COUNTS",
+    data: {squareID, mood},
+  }
+}
+
 export default {
   changeMonthHeader,
   appMounted,
   changeMonthBoard,
   showPopUP,
   update_Mood,
+  updateMoodCounts,
   toggleYearMenu,
   hidePopUp,
   togglePageMask,

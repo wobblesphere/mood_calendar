@@ -70,6 +70,7 @@ class PopUpForm extends Component {
     let note = this.updatedNote();
     let squareID = this.props.squareID;
     this.props.update_Mood({mood, squareID, note });
+    this.props.updateMoodCount({squareID, mood});
     this.props.hidePopUp();
     // window.location.reload();
     // this.props.update_Mood({
@@ -160,6 +161,9 @@ function mapDispatchToProps(dispatch) {
       dispatch(Actions.update_Mood({mood, squareID, note}))
     },
     hidePopUp: () => {dispatch(Actions.hidePopUp())},
+    updateMoodCount: ({squareID, mood}) => {
+      dispatch(Actions.updateMoodCounts({squareID, mood}));
+    }
   }
 }
 

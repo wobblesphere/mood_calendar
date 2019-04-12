@@ -60,7 +60,7 @@ function mapStateToProps(state){
   let currentActiveMonth = state.get('currentMonth');
   return{
     currentActiveMonth,
-    currentMonthMoods: state.get('year2018Moods')[currentActiveMonth],
+    currentMonthMoods: state.get('moodCounts')[currentActiveMonth],
   }
 }
 
