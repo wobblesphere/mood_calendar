@@ -6,23 +6,12 @@ import Utils from '../utils.js';
 
 
 class CalendarDay extends Component {
-  hasNote(){
-    const dayNote = this.getDayInfo('note');
-    if(dayNote){
-      return true
-    } 
-    return false
-  }
-
   markNoteDaySquare(){
-    if(this.hasNote()){
-      return <div className={`dayNoteMarked ${this.getDayInfo("mood")}Marked`}> </div>
+    const dayNote = Utils.getDayNote(this.props.squareID);
+    if(dayNote){
+      return <div className={`dayNoteMarked ${Utils.getDayMood(this.props.squareID)}Marked`}> </div>
     }
     return null
-  }
-
-  getDayInfo(info){
-    return Utils.getDayInfo(this.props.moods, this.props.squareID, info);
   }
 
   isCurrentDate(squareID){
@@ -35,7 +24,7 @@ class CalendarDay extends Component {
   render() {
     return(
       <div className={`day currentMonthDays  ${this.props.startingDayRecord} 
-                    ${this.getDayInfo('mood')} ${this.isCurrentDate(this.props.squareID)}`}
+                    ${Utils.getDayMood(this.props.squareID)} ${this.isCurrentDate(this.props.squareID)}`}
           onClick={()=> this.props.displayForm(this.props.squareID)}>
       {this.props.day}
       {this.markNoteDaySquare()}
@@ -53,7 +42,7 @@ function mapStateToProps(state) {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+function mapDispatchToProps(dispatch) {
    return {
      displayForm: (squareID) => {dispatch(Actions.showPopUP(squareID))},
    };

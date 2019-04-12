@@ -2,7 +2,7 @@ import Constants from './constants';
 
 // monthStartingDay gives the weekday that the month starts on as an integer
 // from 0 to 6
-function monthStartingDay(month, year) {
+function monthStartingDay(month) {
   // const currentMonthIndex = Constants.months.indexOf(month);
 
   // First, get the number of days that has passed
@@ -35,13 +35,29 @@ function getRemainderDays(daysPassed, weeksPassed) {
   return daysPassed - (weeksPassed*7);
 }
 
-function getDayInfo(moodDict, squareID, info){
+
+function getDayMood(squareID) {
   let month = squareID.substr(0, 3);
   let day = squareID.substr(3, (squareID.length));
-  return moodDict.getIn([month, day, info]);
+  let dayInfo = JSON.parse(window.localStorage.getItem("moodsCollection"))[month][day];
+  if (!dayInfo) {
+    return null
+  }
+  return dayInfo[0];
+}
+
+function getDayNote(squareID){
+  let month = squareID.substr(0, 3);
+  let day = squareID.substr(3, (squareID.length));
+  let dayInfo = JSON.parse(window.localStorage.getItem("moodsCollection"))[month][day];
+  if (!dayInfo) {
+    return null;
+  }
+  return dayInfo[1];
 }
 
 export default {
   monthStartingDay,
-  getDayInfo,
+  getDayMood,
+  getDayNote
 }

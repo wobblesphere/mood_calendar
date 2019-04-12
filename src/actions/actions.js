@@ -63,12 +63,12 @@ function togglePageMask(toggle){
   }
 }
 
-function updateMoodCounts(moodCounts){
-  return{
-    type: "UPDATE_MOOD_COUNTS",
-    data: moodCounts,
-  }
-}
+// function updateMoodCounts(moodCounts){
+//   return{
+//     type: "UPDATE_MOOD_COUNTS",
+//     data: moodCounts,
+//   }
+// }
 export default {
   changeMonthHeader,
   appMounted,
@@ -78,6 +78,6 @@ export default {
   toggleYearMenu,
   hidePopUp,
   togglePageMask,
-  updateMoodCounts,
+  // updateMoodCounts,
   updateCurrentDate
 }

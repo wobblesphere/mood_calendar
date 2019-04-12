@@ -10,14 +10,15 @@ import Actions from './actions/actions.js';
 
 class App extends Component {
   renderForm(){
-    if(this.props.isPopUpShown){
-      return (
-        <div>
-          <PopUpForm />
-          <div className="page-mask"></div>
-        </div>
-      )
+    if (!this.props.isPopUpShown) {
+      return null
     }
+    return (
+      <div>
+        <PopUpForm />
+        <div className="page-mask"></div>
+      </div>
+    )
   }
 
   render() {
@@ -30,8 +31,20 @@ class App extends Component {
       </div>
     );
   }
+  
 
   componentDidMount(){
+    const MoodsCollection = window.localStorage.getItem("moodsCollection");
+
+    if (MoodsCollection === null) {
+      const MoodsCollectionOf2018 = {
+        "Jan": {},"Feb": {},"Mar": {},"Apr": {},
+        "May": {},"Jun": {},"Jul": {},"Aug": {},
+        "Sep": {},"Oct": {},"Nov": {},"Dec": {},
+      }
+      window.localStorage.setItem("moodsCollection", JSON.stringify(MoodsCollectionOf2018));
+    }
+    
     this.props.appMounted();
   }
 }
@@ -43,7 +56,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
+function mapDispatchToProps(dispatch) {
   return {
     appMounted: () => dispatch(Actions.appMounted())
   }

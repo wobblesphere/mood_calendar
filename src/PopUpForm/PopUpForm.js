@@ -6,7 +6,6 @@ import Actions from '../actions/actions.js';
 import Utils from '../utils.js';
 import OutsideAlerter from '../YearSelectionMenu/OutsideAlerter.js';
 
-
 class PopUpForm extends Component {
   constructor(){
     super();
@@ -67,13 +66,17 @@ class PopUpForm extends Component {
   }
 
   submitMoodInfo(){
-    let updatedMood = (this.state.selectedMood) ? this.state.selectedMood : this.props.squareMood;
-    let updatedNote = this.updatedNote();
-    this.props.update_Mood({
-        mood: updatedMood,
-        squareID: this.props.squareID,
-        note: updatedNote,
-      })
+    let mood = (this.state.selectedMood) ? this.state.selectedMood : this.props.squareMood;
+    let note = this.updatedNote();
+    let squareID = this.props.squareID;
+    this.props.update_Mood({mood, squareID, note });
+    this.props.hidePopUp();
+    // window.location.reload();
+    // this.props.update_Mood({
+    //     mood: updatedMood,
+    //     squareID: this.props.squareID,
+    //     note: updatedNote,
+    //   })
   }
 
   renderClearAndSubmitButtons(){
@@ -146,12 +149,12 @@ function mapStateToProps(state){
   return{
     squareID,
     moodDict,
-    squareMood: Utils.getDayInfo(moodDict, squareID, 'mood'),
-    squareNote: Utils.getDayInfo(moodDict, squareID, 'note'),
+    squareMood: Utils.getDayMood(squareID),
+    squareNote: Utils.getDayNote(squareID),
   }
 }
 
-const mapDispatchToProps = dispatch => {
+function mapDispatchToProps(dispatch) {
   return {
     update_Mood: ({mood, squareID, note}) => {
       dispatch(Actions.update_Mood({mood, squareID, note}))

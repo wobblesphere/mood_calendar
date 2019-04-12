@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Constants from '../constants.js';
 
 class CalendarLegend extends Component{
-
   calculateMoodCounts(mood){
     let monthTotalDays = Constants.monthDaysDict[this.props.currentActiveMonth];
     let moodCounts = (this.props.currentMonthMoods)? this.props.currentMonthMoods[mood] : 0;
@@ -61,7 +60,7 @@ function mapStateToProps(state){
   let currentActiveMonth = state.get('currentMonth');
   return{
     currentActiveMonth,
-    currentMonthMoods: state.get('year2018MonthlyMoodRecords')[currentActiveMonth],
+    currentMonthMoods: state.get('year2018Moods')[currentActiveMonth],
   }
 }
 
