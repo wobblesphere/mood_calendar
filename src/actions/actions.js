@@ -80,6 +80,6 @@ export default {
   toggleYearMenu,
   hidePopUp,
   togglePageMask,
-  // updateMoodCounts,
+  updateMoodCounts,
   updateCurrentDate
 }

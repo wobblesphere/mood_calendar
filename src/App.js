@@ -35,26 +35,21 @@ class App extends Component {
 
   componentDidMount(){
     // window.localStorage.clear();
+    const moodDictProtocol = {
+      "Jan": {},"Feb": {},"Mar": {},"Apr": {},
+      "May": {},"Jun": {},"Jul": {},"Aug": {},
+      "Sep": {},"Oct": {},"Nov": {},"Dec": {},
+    };
     const MoodsCollection = window.localStorage.getItem("moodsCollection");
     const MoodCounts = window.localStorage.getItem("moodCounts");
 
     if (MoodsCollection === null) {
-      console.log('reset mood collection');
-      const MoodsCollectionOf2018 = {
-        "Jan": {},"Feb": {},"Mar": {},"Apr": {},
-        "May": {},"Jun": {},"Jul": {},"Aug": {},
-        "Sep": {},"Oct": {},"Nov": {},"Dec": {},
-      }
+      const MoodsCollectionOf2018 = moodDictProtocol;
       window.localStorage.setItem("moodsCollection", JSON.stringify(MoodsCollectionOf2018));
     }
 
     if (MoodCounts === null) {
-      console.log('reset mood count collection');
-      const MoodCounts = {
-        "Jan": {},"Feb": {},"Mar": {},"Apr": {},
-        "May": {},"Jun": {},"Jul": {},"Aug": {},
-        "Sep": {},"Oct": {},"Nov": {},"Dec": {},
-      }
+      const MoodCounts = moodDictProtocol;
       window.localStorage.setItem("moodCounts", JSON.stringify(MoodCounts));
     }
 
