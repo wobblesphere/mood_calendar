@@ -31,10 +31,8 @@ class App extends Component {
       </div>
     );
   }
-  
 
-  componentDidMount(){
-    // window.localStorage.clear();
+  componentWillMount() {
     const moodDictProtocol = {
       "Jan": {},"Feb": {},"Mar": {},"Apr": {},
       "May": {},"Jun": {},"Jul": {},"Aug": {},
@@ -52,7 +50,10 @@ class App extends Component {
       const MoodCounts = moodDictProtocol;
       window.localStorage.setItem("moodCounts", JSON.stringify(MoodCounts));
     }
+  }
+  
 
+  componentDidMount(){
     this.props.appMounted();
   }
 }
